@@ -30,3 +30,4 @@ end
 
 gem 'sentimental'
 gem 'words_counted'
+gem 'devise'
