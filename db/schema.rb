@@ -77,4 +77,5 @@ ActiveRecord::Schema.define(version: 2019_06_04_013501) do
   add_foreign_key "reviews", "projects"
   add_foreign_key "sentence_entities", "entities"
   add_foreign_key "sentence_entities", "sentences"
+
 end
