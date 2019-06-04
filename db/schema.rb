@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_071515) do
+ActiveRecord::Schema.define(version: 2019_06_03_075138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "entities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sentence_entities", force: :cascade do |t|
+    t.bigint "sentence_id"
+    t.bigint "entity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entity_id"], name: "index_sentence_entities_on_entity_id"
+    t.index ["sentence_id"], name: "index_sentence_entities_on_sentence_id"
+  end
+
+  create_table "sentences", force: :cascade do |t|
+    t.integer "review_id"
+    t.text "content"
+    t.float "sentiment_score"
+    t.string "sentiment_symbol"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +53,6 @@ ActiveRecord::Schema.define(version: 2019_06_03_071515) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "sentence_entities", "entities"
+  add_foreign_key "sentence_entities", "sentences"
 end
