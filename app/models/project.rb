@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  belongs_to :user
   has_many :reviews
   has_many :sentences, through: :reviews
   has_many :sentence_entities, through: :sentences

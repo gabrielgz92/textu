@@ -27,7 +27,8 @@ puts "Seeded #{User.count} user(s)."
 
 PROJECTS = [
   {
-    user_id: User.first,
+    user: User.first,
+    # user_id wouldn't take user instanece here
     reviews_csv: 'fakest_url_path_ever'
   }
 ]
