@@ -53,15 +53,29 @@ puts "Seeding reviews..."
 puts "There are now #{Review.count} rows in the reviews table"
 
 analyzer = Sentimental.new
-sentence = Sentence.create(review_id: Review.first[:id],
+analyzer.load_defaults
+analyzer.threshold = 0.1
+
+first_sentence = Sentence.create(review_id: Review.first[:id],
                            content: Review.first.comments.split(".").first
                           )
-sentence.update(sentiment_symbol: (analyzer.sentiment sentence.content),
-                sentiment_score: (analyzer.score sentence.content)
+first_sentence.update(sentiment_symbol: (analyzer.sentiment first_sentence.content),
+                sentiment_score: (analyzer.score first_sentence.content)
+                )
+
+second_sentence = Sentence.create(review_id: Review.second[:id],
+                           content: Review.second.comments.split(".").first
+                          )
+second_sentence.update(sentiment_symbol: (analyzer.sentiment second_sentence.content),
+                sentiment_score: (analyzer.score second_sentence.content)
                 )
 
 puts "Seeding sentences..."
 puts "Seeded #{Sentence.count} sentence(s)."
+
+
+
+
 
 # analyzer.sentiment "#{content}"
 
