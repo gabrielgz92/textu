@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_073313) do
+ActiveRecord::Schema.define(version: 2019_06_04_013501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "entities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.bigint "user_id"
@@ -21,6 +27,36 @@ ActiveRecord::Schema.define(version: 2019_06_03_073313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "listing_id"
+    t.string "date"
+    t.string "reviewer_id"
+    t.string "reviewer_name"
+    t.text "comments"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_reviews_on_project_id"
+  end
+
+  create_table "sentence_entities", force: :cascade do |t|
+    t.bigint "sentence_id"
+    t.bigint "entity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entity_id"], name: "index_sentence_entities_on_entity_id"
+    t.index ["sentence_id"], name: "index_sentence_entities_on_sentence_id"
+  end
+
+  create_table "sentences", force: :cascade do |t|
+    t.integer "review_id"
+    t.text "content"
+    t.float "sentiment_score"
+    t.string "sentiment_symbol"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +74,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_073313) do
   end
 
   add_foreign_key "projects", "users"
+  add_foreign_key "reviews", "projects"
+  add_foreign_key "sentence_entities", "entities"
+  add_foreign_key "sentence_entities", "sentences"
 end
