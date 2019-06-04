@@ -8,17 +8,50 @@
 
 require 'csv'
 
-# puts "Cleaning up database..."
-# [csv_text].each(&:destroy_all)
-# puts "----------------------"
+puts "Cleaning up database..."
+[Review, Project, User].each(&:destroy_all)
+puts "----------------------"
+
+USERS = [
+  {
+    email: 'ggz@gmail.com',
+    password: '123456',
+    first_name: 'Gabriel',
+    last_name: 'GZ',
+  }
+]
+
+puts "Seeding users..."
+User.create!(USERS)
+puts "Seeded #{User.count} user(s)."
+
+PROJECTS = [
+  {
+    user_id: User.first,
+    reviews_csv: 'fakest_url_path_ever'
+  }
+]
+
+puts "Seeding projects..."
+Project.create!(PROJECTS)
+puts "Seeded #{Project.count} project(s)."
+
 
 csv_text = File.read(Rails.root.join('db', 'seeds', 'sample_25_reviews.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ";")
+csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ";")
 csv.each do |row|
-  puts row.to_hash
+  r = Review.new
+  r.listing_id = row['listing_id']
+  r.date = row['date']
+  r.reviewer_id = row['reviewer_id']
+  r.reviewer_name = row['reviewer_name']
+  r.comments = row['comments']
+  r.project = Project.first
+  r.save
 end
 
 
+puts "There are now #{Review.count} rows in the reviews table"
 
 
-puts csv_text
+# puts csv_text
