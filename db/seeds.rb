@@ -9,7 +9,7 @@
 require 'csv'
 
 puts "Cleaning up database..."
-[Sentence, Review, Project, User].each(&:destroy_all)
+[SentenceEntity, Sentence, Review, Project, User, Entity].each(&:destroy_all)
 puts "----------------------"
 
 USERS = [
@@ -49,6 +49,13 @@ csv.each do |row|
   r.save
 end
 
+test_review = Review.create(listing_id: 1,
+                            date: 1,
+                            reviewer_id: 1,
+                            reviewer_name: "Test",
+                            comments: "I hate the central location and is the worst place ever.",
+                            project: Project.first)
+
 puts "Seeding reviews..."
 puts "There are now #{Review.count} rows in the reviews table"
 
@@ -70,13 +77,85 @@ second_sentence.update(sentiment_symbol: (analyzer.sentiment second_sentence.con
                 sentiment_score: (analyzer.score second_sentence.content)
                 )
 
+test_sentence = Sentence.create(review_id: Review.last[:id],
+                                content: Review.last.comments.split(".").first
+                                )
+test_sentence.update(sentiment_symbol: (analyzer.sentiment test_sentence.content),
+                     sentiment_score: (analyzer.score test_sentence.content)
+                     )
+
+
 puts "Seeding sentences..."
 puts "Seeded #{Sentence.count} sentence(s)."
 
+# Created to test duplication
+test_entity = Entity.create(name: "cozy")
+
+
+entities = Sentence.first.content.split
+entities.each do |entity|
+  e = Entity.find_by name:entity
+  if e
+    se = SentenceEntity.new
+    se.sentence_id = Sentence.first[:id]
+    se.entity_id = e[:id]
+    se.save
+  else
+    newentity = Entity.new
+    newentity.name = entity
+    newentity.save
+    se = SentenceEntity.new
+    se.sentence_id = Sentence.first[:id]
+    se.entity_id = newentity[:id]
+    se.save
+  end
+end
+
+second_entities = Sentence.second.content.split
+second_entities.each do |entity|
+  e = Entity.find_by name:entity
+  if e
+    se = SentenceEntity.new
+    se.sentence_id = Sentence.first[:id]
+    se.entity_id = e[:id]
+    se.save
+  else
+    newentity = Entity.new
+    newentity.name = entity
+    newentity.save
+    se = SentenceEntity.new
+    se.sentence_id = Sentence.first[:id]
+    se.entity_id = newentity[:id]
+    se.save
+  end
+end
+
+last_entities = Sentence.last.content.split
+last_entities.each do |entity|
+  e = Entity.find_by name:entity
+  if e
+    se = SentenceEntity.new
+    se.sentence_id = Sentence.first[:id]
+    se.entity_id = e[:id]
+    se.save
+  else
+    newentity = Entity.new
+    newentity.name = entity
+    newentity.save
+    se = SentenceEntity.new
+    se.sentence_id = Sentence.first[:id]
+    se.entity_id = newentity[:id]
+    se.save
+  end
+end
 
 
 
+puts "Seeding entities & sentence entities..."
+puts "Seeded #{Entity.count} entities."
+puts "Seeded #{SentenceEntity.count} sentence entities."
 
-# analyzer.sentiment "#{content}"
+
+
 
 
