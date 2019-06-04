@@ -1,4 +1,5 @@
 class Sentence < ApplicationRecord
-  has_many :sentence_entity
   belongs_to :review
+  has_many :sentence_entities
+  has_many :entities, through: :sentence_entities
 end
