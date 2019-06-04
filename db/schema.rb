@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_013501) do
+ActiveRecord::Schema.define(version: 2019_06_04_040705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,12 +51,13 @@ ActiveRecord::Schema.define(version: 2019_06_04_013501) do
   end
 
   create_table "sentences", force: :cascade do |t|
-    t.integer "review_id"
     t.text "content"
     t.float "sentiment_score"
     t.string "sentiment_symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "review_id"
+    t.index ["review_id"], name: "index_sentences_on_review_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,5 +78,5 @@ ActiveRecord::Schema.define(version: 2019_06_04_013501) do
   add_foreign_key "reviews", "projects"
   add_foreign_key "sentence_entities", "entities"
   add_foreign_key "sentence_entities", "sentences"
-
+  add_foreign_key "sentences", "reviews"
 end

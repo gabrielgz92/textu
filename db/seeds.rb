@@ -9,7 +9,7 @@
 require 'csv'
 
 puts "Cleaning up database..."
-[Review, Project, User].each(&:destroy_all)
+[Sentence, Review, Project, User].each(&:destroy_all)
 puts "----------------------"
 
 USERS = [
@@ -36,7 +36,6 @@ puts "Seeding projects..."
 Project.create!(PROJECTS)
 puts "Seeded #{Project.count} project(s)."
 
-
 csv_text = File.read(Rails.root.join('db', 'seeds', 'sample_25_reviews.csv'))
 csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ";")
 csv.each do |row|
@@ -50,8 +49,20 @@ csv.each do |row|
   r.save
 end
 
-
+puts "Seeding reviews..."
 puts "There are now #{Review.count} rows in the reviews table"
 
+analyzer = Sentimental.new
+sentence = Sentence.create(review_id: Review.first[:id],
+                           content: Review.first.comments.split(".").first
+                          )
+sentence.update(sentiment_symbol: (analyzer.sentiment sentence.content),
+                sentiment_score: (analyzer.score sentence.content)
+                )
 
-# puts csv_text
+puts "Seeding sentences..."
+puts "Seeded #{Sentence.count} sentence(s)."
+
+# analyzer.sentiment "#{content}"
+
+
