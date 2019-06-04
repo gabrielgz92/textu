@@ -14,4 +14,12 @@ class User < ApplicationRecord
   has_many :entities, through: :sentence_entities
   # retrieve entities from User instances
   # e.g current_user.entities
+
+  # def top_five_entities
+  # end
+  # to get top 5 enities' instances from user instance
+
+  # def worst_five_entities
+  # end
+  # to get worst 5 enities' instances from user instance
 end
