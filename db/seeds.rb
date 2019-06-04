@@ -106,7 +106,7 @@ second_entities.each do |entity|
   e = Entity.find_by name:entity
   if e
     se = SentenceEntity.new
-    se.sentence_id = Sentence.first[:id]
+    se.sentence_id = Sentence.second[:id]
     se.entity_id = e[:id]
     se.save
   else
@@ -114,7 +114,7 @@ second_entities.each do |entity|
     newentity.name = entity
     newentity.save
     se = SentenceEntity.new
-    se.sentence_id = Sentence.first[:id]
+    se.sentence_id = Sentence.second[:id]
     se.entity_id = newentity[:id]
     se.save
   end
@@ -125,7 +125,7 @@ last_entities.each do |entity|
   e = Entity.find_by name:entity
   if e
     se = SentenceEntity.new
-    se.sentence_id = Sentence.first[:id]
+    se.sentence_id = Sentence.last[:id]
     se.entity_id = e[:id]
     se.save
   else
@@ -133,7 +133,7 @@ last_entities.each do |entity|
     newentity.name = entity
     newentity.save
     se = SentenceEntity.new
-    se.sentence_id = Sentence.first[:id]
+    se.sentence_id = Sentence.last[:id]
     se.entity_id = newentity[:id]
     se.save
   end
