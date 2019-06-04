@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :projects, only: :index  do
     resources :reviews, only: :index
     resources :entities, only: [:index, :show] do
-      get '/reviews_for_entity', to: 'entities#reviews_for_entity', as: 'reviews_for_entity'
+      get '/reviews_for_entity', to: 'entities#reviews_for_entity', as: 'reviews'
     end
   end
 

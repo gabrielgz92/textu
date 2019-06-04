@@ -8,10 +8,10 @@ class User < ApplicationRecord
   has_many :projects, dependent: :destroy
   has_many :reviews, through: :projects
   # retrieve reviews from User instances
-  # e.g currnent_user.reviews
+  # e.g current_user.reviews
   has_many :sentences, through: :reviews
   has_many :sentence_entities, through: :sentences
   has_many :entities, through: :sentence_entities
   # retrieve entities from User instances
-  # e.g currnent_user.entities
+  # e.g current_user.entities
 end
