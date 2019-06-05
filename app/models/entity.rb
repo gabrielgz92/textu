@@ -8,7 +8,7 @@ class Entity < ApplicationRecord
   # but need another method to retrieve reviews from "specific project"
 
   def avg_sentiment
-    sentences.pluck(:sentiment_score).reduce(&:+)
+    sentences.pluck(:sentiment_score).reduce(&:+) / occurrences
   end
 
   def occurrences
