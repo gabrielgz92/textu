@@ -1,0 +1,42 @@
+.textu-logo{
+  margin: 60px;
+  text-align: center;
+}
+
+.sidebar{
+  padding: 20px;
+  width: 250px;
+  height: 100vh;
+  background-image: linear-gradient($textu-purple, $textu-purple-dark);
+  color: white;
+}
+
+.import-csv-btn{
+  width: 150px;
+  margin-right: 0;
+  height: 70px;
+}
+
+.symbol{
+  width: 40px;
+  padding: 4px;
+}
+
+.sidebar p {
+  font-size: 20px;
+}
+
+.sidebar i {
+  font-size: 20px;
+}
+
+.sidebar-block{
+  height: 88px;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+
