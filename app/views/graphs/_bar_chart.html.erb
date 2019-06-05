@@ -1,5 +1,5 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 
-<h1> <%= column_chart Review.group("reviews.id").group_by_month(:date, format: "%m") %> </h1>
+ <%= column_chart Review.group("reviews.id").group_by_month(:date, format: "%m")%>
 

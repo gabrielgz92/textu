@@ -14,6 +14,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem "chartkick"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -34,3 +35,4 @@ gem 'devise'
 gem 'chartkick'
 gem 'groupdate'
 gem 'active_median'
+gem 'carrierwave', '~> 1.0'
