@@ -2,5 +2,5 @@
 
 <div class="container">
   <h3>Average sentiment score over time </h3>
-  <%= column_chart reviews_by_month_of_year_path, min: -1, max: 1, xtitle: 'Month', ytitle: 'Average sentiment score' %>
+  <%= line_chart reviews_by_month_of_year_path, min: -1, max: 1, xtitle: 'Month', ytitle: 'Average sentiment score' %>
 </div>
