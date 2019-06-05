@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :projects, only: :index  do
+  resources :projects, only: [:index, :new, :create]  do
     resources :reviews, only: :index
     resources :entities, only: [:index, :show] do
       get '/reviews_for_entity', to: 'entities#reviews_for_entity', as: 'reviews'

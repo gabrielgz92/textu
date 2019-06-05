@@ -1,0 +1,59 @@
+,,"server        : http://xrdev.imaladdin.ai
+acccount   : demo_student@gmail.com
+password : 222222
+serialno    : AaBbC1",,"測試過程全是以Postman根據過去API的回傳資料與新伺服器做比對。
+若有任何問題請再與我們聯絡，非常感謝。",,,
+編號,API 名稱,回報,備註,答覆,錦田回覆,,錦田回覆
+1,logon.domain,OK,前端 會將【password】用 md5加密之後再傳給後台。,,,,
+2,logon,沒辦法登入,前端 會將【password】用 md5加密之後再傳給後台。,輸入參數及錯誤訊息為何？,"更正 應為 logon API 
+username/password 同上面資訊
+appid = 8
+錯誤訊息為
+{""Error"":""Bad Username or Password or Appid""}","我這邊測試可以登入成功的，跟你確認一下參數：
+API: http://xrdev.imaladdin.ai/api/logon
+username: demo_student@gmail.com
+password: 222222
+appid: 8","之前都是拿掉domain name測試，
+現在用完整帳號已確定可以登入。
+另外，輸出的資料 userdata 內的 ""\\""增加，是正常的?"
+4,logoff,沒辦法登出,,是否有先成功登入,"有先用 logon.domain 登入過 
+錯誤訊息 :
+{""Error"": ""Invalid Token""}",看起來是沒登入成功,似乎是postman設定的Headers導致錯誤，將Content-Type欄位拿掉即可。
+5,GetQuestionStatistics,是否正在調整 ?,,沒有，請問有什麼問題？,"不確定 【subjid 】、【courseid】該輸入什麼參數測試
+錯誤訊息 :
+{""Error"": ""You are not authorized!""}",看起來是沒登入成功,似乎是postman設定的Headers導致錯誤，將Content-Type欄位拿掉即可。
+6,GetQuestionCount,是否正在調整 ?,,沒有，請問有什麼問題？,"輸入的參數如下: 
+subjid = 1
+courseid = 8
+categoryid = 1
+sceneid = 1
+zoneid = 1
+qtypeid = 1
+
+錯誤訊息:
+{""Error"": ""qtypeid is not found.""}","此部分應該要先取得 GetQuestionStatistics API 的回傳結果，
+才會知道可用的 categoryid, sceneid, zoneid, qtypeid 為何",同編號4、5拿掉Headers設定，已可正常回傳結果。
+7,GetQuestionList,OK,,,,,
+9,SetQuestionAnswer,OK,,,,,
+10,SetQuestionAnswerArray,OK,,,,,
+11,SetHistory,OK,,,,,
+12,GetSchoolData,尚未針對不同Appid 回傳不同格式。,請參閱原API頁面，或點選此格查看註解。,因為登入時已經有設定 appid，因此已知登入的使用者是登入哪一個課程,"所以目前回傳格式固定為
+{
+    ""school_logo"": null,
+    ""school_map"": ""https://xxxx.png"",
+    ""school_background"": ""https://xxxx.png"",
+    ""school_name"": ""開發者中學""
+}
+以上格式嗎? 
+","是的，因為透過 tokendata，
+已經會知道使用者的學校以及他登入使用的課程，
+所以輸入的 appid, school_id 都會忽略",這邊已瞭解。
+13,GetGames,每個元素中多傳了一欄【status】。,請參閱原API頁面，或點選此格查看註解。,之前有討論過這個問題，每個課程應該會有不同的狀態,"那麼想請問下 課程元素之外的 status 是用來做什麼的
+
+回傳資料參見此格註解
+","保留此 status 為相容用，固定為 true
+避免舊的 app 仍存取此值而當掉",瞭解，不過該欄位可以不用回傳，前端這邊會再做修正。
+14,Get2wksHistory,OK,,,,,
+16,GetServer,想詢問 【email_domain】這欄位是否是給其他app使用的 ?,,讓使用者不需輸入完整的 email domain,所以 email_domain 之後會是各學校固定嗎?,是的,
+19,Get360Scene,在scene的陣列中少一個【position】欄位，此欄位是排序場景選單用編號。,請參閱原API頁面，或點選此格查看註解。,之前文件沒有這一項,"那麼希望可以添加上去
+前端排序上會需要",有關於 position 的詳細說明嗎？,於後台上傳的360場景圖，拖曳時可以調整順序，這順序會決定app選擇場景時的先後順序。position值為該場景圖排序的值
