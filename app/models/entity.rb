@@ -6,4 +6,12 @@ class Entity < ApplicationRecord
   # e.g. Entity.find(2).reviews
 
   # but need another method to retrieve reviews from "specific project"
+
+  def avg_sentiment
+    sentences.pluck(:sentiment_score).reduce(&:+)
+  end
+
+  def occurrences
+    sentence_entities.count
+  end
 end
