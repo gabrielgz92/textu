@@ -110,4 +110,8 @@ puts "Seeded #{Entity.count} entities."
 puts "Seeded #{SentenceEntity.count} sentence entities."
 
 
-# HARDCODE SEEDS
+puts "Cleaning up database..."
+[SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
+puts "----------------------"
+
+
