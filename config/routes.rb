@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get :reviews_by_month, to: 'reviews#reviews_by_month'
+
   get '/my-profile', to: 'users#show'
   get 'edit-profile/:id/form', to: 'users#edit', as: 'edit_profile'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
