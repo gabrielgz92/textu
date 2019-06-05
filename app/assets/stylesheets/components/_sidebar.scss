@@ -1,42 +1,64 @@
-.textu-logo{
-  margin: 60px;
-  text-align: center;
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 240px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-image: linear-gradient($textu-purple, $textu-purple-dark); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
-.sidebar{
-  padding: 20px;
-  width: 250px;
-  height: 100vh;
-  background-image: linear-gradient($textu-purple, $textu-purple-dark);
+#textu-logo{
   color: white;
-}
-
-.import-csv-btn{
-  width: 150px;
-  margin-right: 0;
-  height: 70px;
+  text-align: center;
+  margin-bottom: 36px;
 }
 
 .symbol{
-  width: 40px;
-  padding: 4px;
+  width: 32px;
 }
 
-.sidebar p {
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
   font-size: 20px;
+  font-weight: lighter;
+  color: white;
+  display: block;
+  transition: 0.3s;
 }
 
-.sidebar i {
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 24px;
+  margin-left: 50px;
+  font-weight: lighter;
+}
+
+.openbtn {
   font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
 }
 
-.sidebar-block{
-  height: 88px;
+.openbtn:hover {
+  background-color: #444;
 }
 
-ul{
-  list-style: none;
-  padding: 0;
+#main {
+  transition: margin-left 1s;
+  padding: 16px;
 }
-
 
