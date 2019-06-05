@@ -32,4 +32,6 @@ end
 gem 'sentimental'
 gem 'words_counted'
 gem 'devise'
+gem 'groupdate'
+gem 'active_median'
 gem 'carrierwave', '~> 1.0'

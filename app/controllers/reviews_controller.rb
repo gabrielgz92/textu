@@ -5,6 +5,10 @@ class ReviewsController < ApplicationController
     @reviews = current_user.reviews
   end
 
+  def reviews_by_month_of_year
+    render json: Review.all.group_by_month(:date, format: "%m %Y").count
+  end
+
   private
 
   def set_project

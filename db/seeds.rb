@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+
 require 'csv'
 
 puts "Cleaning up database..."
@@ -111,4 +113,5 @@ puts "Seeded #{SentenceEntity.count} sentence entities."
 puts "Cleaning up database..."
 [SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
 puts "----------------------"
+
 
