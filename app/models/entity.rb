@@ -11,4 +11,7 @@ class Entity < ApplicationRecord
     sentences.pluck(:sentiment_score).reduce(&:+)
   end
 
+  def occurrences
+    sentence_entities.count
+  end
 end
