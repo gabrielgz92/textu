@@ -37,6 +37,8 @@ puts "Seeding projects..."
 Project.create!(PROJECTS)
 puts "Seeded #{Project.count} project(s)."
 
+# ---------------------------------------
+# Parse CSV and Creating REVIEW instances
 csv_text = File.read(Rails.root.join('db', 'seeds', 'sample_3_reviews.csv'))
 csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ";")
 csv.each do |row|
@@ -53,99 +55,55 @@ end
 puts "Seeding reviews..."
 puts "There are now #{Review.count} rows in the reviews table"
 
+# Initializing Sentimental Gem
 analyzer = Sentimental.new
 analyzer.load_defaults
 analyzer.threshold = 0.1
 
-first_sentence = Sentence.create(review_id: Review.first[:id],
-                           content: Review.first.comments.split(".").first
-                          )
-first_sentence.update(sentiment_symbol: (analyzer.sentiment first_sentence.content),
-                sentiment_score: (analyzer.score first_sentence.content)
-                )
+@reviews = Review.all
 
-second_sentence = Sentence.create(review_id: Review.second[:id],
-                           content: Review.second.comments.split(".").first
-                          )
-second_sentence.update(sentiment_symbol: (analyzer.sentiment second_sentence.content),
-                sentiment_score: (analyzer.score second_sentence.content)
-                )
-
-last_sentence = Sentence.create(review_id: Review.last[:id],
-                                content: Review.last.comments.split(".").first
-                                )
-last_sentence.update(sentiment_symbol: (analyzer.sentiment last_sentence.content),
-                     sentiment_score: (analyzer.score last_sentence.content)
-                     )
-
+# ---------------------------------------
+# Creating SENTENCE instances
+@reviews.each do |r|
+  r.comments.split(".").each do |sentence|
+    s = Sentence.create(review_id: r.id,
+                        content: sentence)
+    s.update(sentiment_symbol: (analyzer.sentiment s.content),
+             sentiment_score: (analyzer.score s.content))
+  end
+end
 
 puts "Seeding sentences..."
 puts "Seeded #{Sentence.count} sentence(s)."
 
-entities = Sentence.first.content.split
-entities.each do |entity|
-  e = Entity.find_by name:entity
-  if e
-    se = SentenceEntity.new
-    se.sentence_id = Sentence.first[:id]
-    se.entity_id = e[:id]
-    se.save
-  else
-    newentity = Entity.new
-    newentity.name = entity
-    newentity.save
-    se = SentenceEntity.new
-    se.sentence_id = Sentence.first[:id]
-    se.entity_id = newentity[:id]
-    se.save
-  end
+@sentences = Sentence.all
+
+# Creating stop words array
+@stop_words = []
+File.open('db/stop_words.txt', "r").reduce([]) do |stop_words, line|
+  @stop_words << line.chomp
 end
 
-second_entities = Sentence.second.content.split
-second_entities.each do |entity|
-  e = Entity.find_by name:entity
-  if e
-    se = SentenceEntity.new
-    se.sentence_id = Sentence.second[:id]
-    se.entity_id = e[:id]
-    se.save
-  else
-    newentity = Entity.new
-    newentity.name = entity
-    newentity.save
-    se = SentenceEntity.new
-    se.sentence_id = Sentence.second[:id]
-    se.entity_id = newentity[:id]
-    se.save
+# ---------------------------------------
+# Creating ENTITY and SENTENCE_ENTITIES instances
+@sentences.each do |sentence|
+  sentence.content.chomp.downcase.split.each do |word|
+    unless @stop_words.include? word
+      if word[-1] == "!" then word.chomp!("!") end
+      entity = Entity.find_by name:word
+      if entity
+        SentenceEntity.create(sentence_id: sentence.id,
+                              entity_id: entity.id)
+      else
+        new_entity = Entity.create(name: word)
+        SentenceEntity.create(sentence_id: sentence.id,
+                              entity_id: new_entity.id)
+      end
+    end
   end
 end
-
-last_entities = Sentence.last.content.split
-last_entities.each do |entity|
-  e = Entity.find_by name:entity
-  if e
-    se = SentenceEntity.new
-    se.sentence_id = Sentence.last[:id]
-    se.entity_id = e[:id]
-    se.save
-  else
-    newentity = Entity.new
-    newentity.name = entity
-    newentity.save
-    se = SentenceEntity.new
-    se.sentence_id = Sentence.last[:id]
-    se.entity_id = newentity[:id]
-    se.save
-  end
-end
-
-
 
 puts "Seeding entities & sentence entities..."
 puts "Seeded #{Entity.count} entities."
 puts "Seeded #{SentenceEntity.count} sentence entities."
-
-
-
-
 
