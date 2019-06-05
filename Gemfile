@@ -31,3 +31,6 @@ end
 gem 'sentimental'
 gem 'words_counted'
 gem 'devise'
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
