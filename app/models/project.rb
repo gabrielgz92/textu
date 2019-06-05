@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  mount_uploader :reviews_csv, CsvUploader
   belongs_to :user
   has_many :reviews
   has_many :sentences, through: :reviews
