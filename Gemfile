@@ -32,3 +32,4 @@ end
 gem 'sentimental'
 gem 'words_counted'
 gem 'devise'
+gem 'carrierwave', '~> 1.0'
