@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'projects/index'
+  get 'projects/new'
   devise_for :users
   root to: 'pages#home'
 
