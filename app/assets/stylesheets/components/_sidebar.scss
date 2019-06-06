@@ -1,3 +1,19 @@
+#mySidebar.sidebar-closed {
+  width: 50px;
+}
+
+#main.sidebar-closed {
+  margin-left: 40px;
+}
+
+.symbol.sidebar-closed{
+  margin-right: 24px;
+}
+
+#textu-logo.sidebar-closed{
+  margin-left: 52px;
+}
+
 .sidebar {
   height: 100%; /* 100% Full-height */
   width: 240px; /* 0 width - change this with JavaScript */
@@ -35,30 +51,10 @@
   color: #f1f1f1;
 }
 
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 24px;
-  margin-left: 50px;
-  font-weight: lighter;
-}
-
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
 
 #main {
   transition: margin-left 1s;
   padding: 16px;
+  margin-left: 240px;
 }
 

@@ -1,6 +1,6 @@
 <div id="mySidebar" class="sidebar">
   <h2 id="textu-logo">Textu</h2>
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
   <%= link_to new_project_path do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
@@ -16,7 +16,7 @@
       <div class="symbol-text"><p>Projects</p></div>
     </div>
   <% end %>
-  <%= link_to new_project_path do %>
+  <%= link_to projects_path do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
         <i class="fas fa-chart-bar"></i>
@@ -36,7 +36,7 @@
       </div>
     </div>
   <% end %>
-  <%= link_to new_project_path do %>
+  <%= link_to projects_path do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
         <i class="fas fa-project-diagram"></i>
@@ -46,7 +46,7 @@
       </div>
     </div>
   <% end %>
-  <%= link_to new_project_path do %>
+  <%= link_to projects_path do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
         <i class="far fa-comment-alt"></i>
@@ -58,6 +58,6 @@
   <% end %>
 </div>
 
-<div id="main">
+<!-- <div id="main">
   <button class="openbtn" onclick="openNav()">☰</button>
-</div>
+</div> -->

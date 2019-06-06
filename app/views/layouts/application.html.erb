@@ -17,14 +17,10 @@
     <p class="alert"><%= alert %></p>
   </body>
   <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "240px";
-      document.getElementById("main").style.marginLeft = "240px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "50px";
-      document.getElementById("main").style.marginLeft= "0px";
+    function toggleNav() {
+      document.getElementById("mySidebar").classList.toggle("sidebar-closed")
+      document.getElementById("main").classList.toggle("sidebar-closed");
+      document.getElementById("textu-logo").classList.toggle("sidebar-closed");
     }
 </script>
 </html>
