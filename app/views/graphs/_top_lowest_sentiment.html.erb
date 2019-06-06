@@ -1,2 +1,4 @@
-<%= bar_chart SentenceEntity.joins(:entity).group('entities.name').count(:sentence_id) %>
+<%= bar_chart SentenceEntity.limit(5).joins(:entity).group('entities.name').count(:sentence_id)%>
 
+
+<%= bar_chart SentenceEntity.limit(5).joins(:entity).group('entities.name').count(:sentence_id)%>

@@ -19,7 +19,6 @@ class ProjectsController < ApplicationController
       create_sentences_from_reviews
       # creating entities and their relation with sentences
       create_sentence_entities_and_entities_from_sentences
-
       # just for testing, this needs to redirect to graphs later on
       redirect_to projects_path
     else
