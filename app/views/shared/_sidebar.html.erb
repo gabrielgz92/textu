@@ -16,7 +16,7 @@
       <div class="symbol-text"><p>Projects</p></div>
     </div>
   <% end %>
-  <%= link_to projects_path do %>
+  <%= link_to project_reviews_path(params[:project_id]) do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
         <i class="fas fa-chart-bar"></i>
@@ -26,7 +26,7 @@
       </div>
     </div>
   <% end %>
-  <%= link_to projects_path do %>
+  <%= link_to project_entities_path do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
         <i class="fas fa-bullseye"></i>
@@ -36,7 +36,7 @@
       </div>
     </div>
   <% end %>
-  <%= link_to projects_path do %>
+  <%= link_to project_entities_data_path do %>
     <div class="import-csv-btn d-flex">
       <div class="symbol">
         <i class="fas fa-project-diagram"></i>
