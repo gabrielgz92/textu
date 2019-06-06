@@ -1,60 +1,63 @@
-<div class="d-flex">
-  <div class="sidebar">
-    <div class="textu-logo">
-      <h3>Textu</h3>
+<div id="mySidebar" class="sidebar">
+  <h2 id="textu-logo">Textu</h2>
+  <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+  <%= link_to new_project_path do %>
+    <div class="import-csv-btn d-flex">
+      <div class="symbol">
+        <i class="fas fa-file-import"></i></div>
+      <div class="symbol-text"><p>Import</p></div>
     </div>
-      <div class="sidebar-block">
+  <% end %>
+  <%= link_to projects_path do %>
+    <div class="import-csv-btn d-flex">
+      <div class="symbol">
+        <i class="far fa-folder"></i>
       </div>
-      <ul>
-        <li>
-          <%= link_to new_project_path do %>
-          <div class="import-csv-btn d-flex">
-            <div class="symbol">
-            <i class="fas fa-file-import"></i></div>
-            <div class="symbol-text"><p>Import csv</p></div>
-          </div>
-          <% end %>
-        </li>
-        <li>
-          <div class="import-csv-btn d-flex">
-            <div class="symbol">
-            <i class="far fa-folder"></i></div>
-            <div class="symbol-text"><p>Projects</p></div>
-          </div>
-        </li>
-        <li>
-          <div class="import-csv-btn d-flex">
-            <div class="symbol">
-            <i class="fas fa-chart-bar"></i></div>
-            <div class="symbol-text"><p>General</p></div>
-          </div>
-        </li>
-        <li>
-          <div class="import-csv-btn d-flex">
-            <div class="symbol">
-            <i class="fas fa-bullseye"></i></div>
-            <div class="symbol-text"><p>Keyword</p></div>
-          </div>
-        </li>
-        <li>
-          <div class="import-csv-btn d-flex">
-            <div class="symbol">
-            <i class="fas fa-project-diagram"></i></div>
-            <div class="symbol-text"><p>Keywords</p></div>
-          </div>
-        </li>
-        <li>
-          <div class="import-csv-btn d-flex">
-            <div class="symbol">
-            <i class="far fa-comment-alt"></i></div>
-            <div class="symbol-text"><p>Reviews</p></div>
-          </div>
-        </li>
-      </ul>
-  </div>
+      <div class="symbol-text"><p>Projects</p></div>
+    </div>
+  <% end %>
+  <%= link_to projects_path do %>
+    <div class="import-csv-btn d-flex">
+      <div class="symbol">
+        <i class="fas fa-chart-bar"></i>
+      </div>
+      <div class="symbol-text">
+        <p>General</p>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to projects_path do %>
+    <div class="import-csv-btn d-flex">
+      <div class="symbol">
+        <i class="fas fa-bullseye"></i>
+      </div>
+      <div class="symbol-text">
+        <p>Keyword</p>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to projects_path do %>
+    <div class="import-csv-btn d-flex">
+      <div class="symbol">
+        <i class="fas fa-project-diagram"></i>
+      </div>
+      <div class="symbol-text">
+        <p>Keywords</p>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to projects_path do %>
+    <div class="import-csv-btn d-flex">
+      <div class="symbol">
+        <i class="far fa-comment-alt"></i>
+      </div>
+      <div class="symbol-text">
+        <p>Reviews</p>
+      </div>
+    </div>
+  <% end %>
 </div>
 
-
-
-
-
+<!-- <div id="main">
+  <button class="openbtn" onclick="openNav()">☰</button>
+</div> -->
