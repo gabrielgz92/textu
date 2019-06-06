@@ -79,6 +79,9 @@ class ProjectsController < ApplicationController
       sentence.content.chomp.downcase.split.each do |word|
         unless @stop_words.include? word
           if word[-1] == "!" then word.chomp!("!") end
+          if word[-1] == "," then word.chomp!(",") end
+          if word[-1] == ":" then word.chomp!(":") end
+          if word[-1] == ";" then word.chomp!(";") end
           entity = Entity.find_by name: word
           if entity
             SentenceEntity.create(sentence_id: sentence.id,
