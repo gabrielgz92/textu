@@ -113,18 +113,3 @@
 # puts "Cleaning up database..."
 # [SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
 # puts "----------------------"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
