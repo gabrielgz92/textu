@@ -1,18 +1,26 @@
 #mySidebar.sidebar-closed {
   width: 50px;
+  .symbol{
+    margin-left: -16px;
+  }
+
+  .symbol-text{
+    margin-left: 14px;
+  }
 }
 
 .main.sidebar-closed {
   margin-left: 40px;
 }
 
-.symbol.sidebar-closed{
-  margin-right: 24px;
+.symbol.sidebar-closed {
+  margin-left: -16px;
 }
 
 #textu-logo.sidebar-closed{
   margin-left: 52px;
 }
+
 
 .sidebar {
   height: 100%; /* 100% Full-height */
