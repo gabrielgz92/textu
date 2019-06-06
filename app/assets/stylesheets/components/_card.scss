@@ -69,3 +69,13 @@ a:hover{
   text-decoration: none;
   color: inherit;
 }
+
+.entities-graph-card{
+  position: fixed;
+  margin-left: 196px;
+  margin-top: 72px;
+  background-color: $light-gray;
+  height: 100vh;
+  width: 100vw;
+
+}
