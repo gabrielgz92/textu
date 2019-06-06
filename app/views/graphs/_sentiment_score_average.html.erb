@@ -1,0 +1,6 @@
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
+<div class="container">
+  <h3> Sentiment Score Averages </h3>
+  <%= scatter_chart sentiment_score_averages_path, xtitle: 'Number of Mentions', ytitle: 'Average Sentiment Score' %>
+</div>
