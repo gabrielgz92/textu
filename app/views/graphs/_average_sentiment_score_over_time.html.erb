@@ -1,20 +1,8 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 <div class="container">
-  <h3>Average sentiment score over time</h3>
-  <%= line_chart Review.group_by_day(:date).count %>
-</div>
-
-<<<<<<< HEAD
-
-
-<%= line_chart  %>
-=======
-<div class="container">
   <h3>Average sentiment score over time TEST</h3>
   <% variable = Entity.find_by(name:"location").sentiment_over_time  %>
   <%= line_chart variable %>
 </div>
 
-
->>>>>>> ab059c938ce3f2c61570933fdb4c161acea251e7
