@@ -44,8 +44,35 @@ class Entity < ApplicationRecord
       occurences = sentences.select { |sentence| sentence.content.include? name }
       average_sentiment = occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count
       sentiment_scores[review.date] = average_sentiment
-    # sentiment_scores << [review.date, average_sentiment]
+      # sentiment_scores << [review.date, average_sentiment]
     end
     sentiment_scores
   end
+
+  def self.top_highest_sentiment
+    Entity.all.sort_by { |x| x.avg_sentiment }.reverse!.map { |x| [x.name, x.occurrences] }.first(5)
+  end
+
+  def self.top_lowest_sentiment
+    Entity.all.sort_by { |x| x.avg_sentiment }.map { |x| [x.name, x.occurrences] }.first(5)
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

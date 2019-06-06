@@ -1,4 +1,6 @@
-<%= bar_chart SentenceEntity.limit(5).joins(:entity).group('entities.name').count(:sentence_id)%>
+<div class="container">
+  <h3>Entity mentions with lowest sentiment score</h3>
 
+  <%= bar_chart Entity.top_lowest_sentiment, xtitle: "Mentions", ytitle: "Entity" %>
 
-<%= bar_chart SentenceEntity.limit(5).joins(:entity).group('entities.name').count(:sentence_id)%>
+</div>
