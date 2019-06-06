@@ -1,0 +1,11 @@
+<ul class="nav navbar justify-content-end  sticky-top">
+  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle mr-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="https://picsum.photos/200" alt="" class="avatar"></a>
+      <div class="dropdown-menu mr-3">
+        <%= link_to 'My Profile', my_profile_path,class: "dropdown-item" %>
+        <a class="dropdown-item" href="#two">two</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <%= link_to 'Sign Out', destroy_user_session_path,class: "dropdown-item", method: :delete %>
+      </div>
+    </li>
+</ul>

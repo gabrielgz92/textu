@@ -7,6 +7,18 @@
   .symbol-text{
     margin-left: 14px;
   }
+
+  .font-awsome{
+    margin-left: -12px;
+  }
+
+  .closebtn {
+  margin-left: 0px;
+  }
+}
+
+#mySidebar.font-awsome {
+  font-size: 20px;
 }
 
 .main.sidebar-closed {
@@ -21,12 +33,16 @@
   margin-left: 52px;
 }
 
+.closebtn {
+  margin-left: 130px;
+}
+
 
 .sidebar {
   height: 100%; /* 100% Full-height */
-  width: 240px; /* 0 width - change this with JavaScript */
+  width: 196px;/* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 100; /* Stay on top */
   top: 0;
   left: 0;
   background-image: linear-gradient($textu-purple, $textu-purple-dark); /* Black*/
@@ -43,6 +59,7 @@
 
 .symbol{
   width: 32px;
+
 }
 
 .sidebar a {
@@ -62,8 +79,9 @@
 
 .main {
   transition: margin-left 1s;
-  padding: 16px;
-  margin-left: 240px;
+  padding: 0px;
+  margin-left: 196px;
+  display: flex;
 }
 
 .projects-title{
