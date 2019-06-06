@@ -50,19 +50,19 @@ class Entity < ApplicationRecord
   end
 
   def self.top_highest_sentiment
-    Entity.all.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(10)
+    Entity.all.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(5)
   end
 
-  def top_highest_sentiment_with_sentiment
-    Entity.all.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences, x.avg_sentiment] }.first(10)
+  def self.top_highest_sentiment_with_avgs
+    Entity.all.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.avg_sentiment] }.first(5)
   end
 
   def self.top_lowest_sentiment
-    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(10)
+    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
   end
 
-  def self.top_lowest_sentiment_with_sentiment
-    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(10)
+  def self.top_lowest_sentiment_with_avgs
+    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
   end
 end
 
