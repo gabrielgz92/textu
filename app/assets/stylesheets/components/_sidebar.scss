@@ -2,7 +2,7 @@
   width: 50px;
 }
 
-#main.sidebar-closed {
+.main.sidebar-closed {
   margin-left: 40px;
 }
 
@@ -52,7 +52,7 @@
 }
 
 
-#main {
+.main {
   transition: margin-left 1s;
   padding: 16px;
   margin-left: 240px;

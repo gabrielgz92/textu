@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_project, only: :create
+  before_action :set_project, only: %i[index create]
 
   def index
     @reviews = current_user.reviews
@@ -12,6 +12,6 @@ class ReviewsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 end
