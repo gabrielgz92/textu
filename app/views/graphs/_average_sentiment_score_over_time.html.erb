@@ -5,4 +5,10 @@
   <%= line_chart Review.group_by_day(:date).count %>
 </div>
 
+<div class="container">
+  <h3>Average sentiment score over time TEST</h3>
+  <% variable = Entity.find_by(name:"location").sentiment_over_time  %>
+  <%= line_chart variable %>
+</div>
+
 
