@@ -1,5 +1,6 @@
 <div class="container">
-  <h3>Entity mentions</h3>
-  <%= bar_chart SentenceEntity.joins(:entity).group('entities.name').count(:sentence_id).sort, xtitle: "Mentions", ytitle: "Entity" %>
-</div>
+  <h3>Entity mentions with highest sentiment score</h3>
 
+  <%= bar_chart Entity.top_highest_sentiment, xtitle: "Mentions", ytitle: "Entity" %>
+
+</div>
