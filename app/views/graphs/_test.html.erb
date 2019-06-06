@@ -2,4 +2,3 @@
   <h3>Entity mentions</h3>
   <%= bar_chart SentenceEntity.joins(:entity).group('entities.name').count(:sentence_id).sort, xtitle: "Mentions", ytitle: "Entity" %>
 </div>
-
