@@ -1,0 +1,13 @@
+.number-highlight {
+  background: $light-gray;
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  padding: 3px 10px;
+
+}
+
+.number-highlight-positive {
+  background: $green;
+  color: white;
+}
