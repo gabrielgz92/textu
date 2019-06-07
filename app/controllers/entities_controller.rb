@@ -1,6 +1,8 @@
 class EntitiesController < ApplicationController
   before_action :set_project, only: %i[show entites_data]
+
   def index
+    @entities = Project.find(params[:project_id]).entities
   end
 
   def reviews_for_entity
