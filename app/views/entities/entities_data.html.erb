@@ -1,9 +1,7 @@
 <%= render 'shared/sidebar' %>
 <div class="main">
-<h2>Three graphs here</h2>
-  <ul>
-    <li>Sentiment score averages</li>
-    <li>Which entities mentioned in reviews have the highest average sentiment score?</li>
-    <li>Which entities mentioned in reviews have the lowest average sentiment score?</li>
-  </ul>
+  <div class="graphs_grid">
+    <%= render 'graphs/top_highest_sentiment' %>
+    <%= render 'graphs/top_lowest_sentiment' %>
+  </div>
 </div>
