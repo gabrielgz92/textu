@@ -1,3 +1,20 @@
 .graph {
   margin-top: 72px;
 }
+
+.graph-container {
+  padding: 16px;
+  margin-left: 0px;
+  width: 85%;
+}
+
+.graph-container-card {
+  padding: 16px;
+  margin-left: 0px;
+  width: 85%;
+  border-style: solid white;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 1px 1px 4px $shadow-grey;
+}
+
