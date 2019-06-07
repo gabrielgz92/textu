@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
         s = Sentence.create(review_id: r.id,
                             content: sentence)
         s.update(sentiment_symbol: (analyzer.sentiment s.content),
-                 sentiment_score: (analyzer.score s.content))
+                 sentiment_score: (analyzer.score s.content).round(2))
       end
     end
   end
