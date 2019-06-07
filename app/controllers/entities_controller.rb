@@ -1,11 +1,13 @@
 class EntitiesController < ApplicationController
   before_action :set_project, only: %i[show entites_data]
+  before_action :set_entities, only: %i[index reviews_for_entity]
 
   def index
-    @entities = Project.find(params[:project_id]).entities
+
   end
 
   def reviews_for_entity
+
   end
 
   def show
@@ -19,5 +21,9 @@ class EntitiesController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def set_entities
+    @entities = Project.find(params[:project_id]).entities
   end
 end
