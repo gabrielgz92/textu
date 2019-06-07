@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   get :reviews_by_month_of_year, to: 'reviews#reviews_by_month_of_year'
+  get :sentiment_score_averages, to:'reviews#sentiment_score_averages'
 
   get '/my-profile', to: 'users#show'
   get 'edit-profile/:id/form', to: 'users#edit', as: 'edit_profile'

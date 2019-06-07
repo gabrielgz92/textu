@@ -1,6 +1,8 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 <div class="container">
-  <h3>Average sentiment score over time </h3>
-  <%= line_chart reviews_by_month_of_year_path, min: -1, max: 1, xtitle: 'Month', ytitle: 'Average sentiment score' %>
+  <h3>Average sentiment score over time</h3>
+  <% variable = Entity.find_by(name:"location").sentiment_over_time  %>
+  <%= line_chart variable %>
 </div>
+

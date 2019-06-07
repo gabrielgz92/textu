@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>Entity mentions with highest sentiment score</h3>
+  <div class="top5_container">
+
+    <div class="top5list">
+      <% Entity.top_highest_sentiment_with_avgs.each do |e| %>
+      <p> <%= e.second %> </p>
+      <% end %>
+    </div>
+
+    <%= bar_chart Entity.top_highest_sentiment, xtitle: "Mentions", legend: false%>
+
+
+  </div>
+</div>

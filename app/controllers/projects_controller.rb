@@ -19,7 +19,6 @@ class ProjectsController < ApplicationController
       create_sentences_from_reviews
       # creating entities and their relation with sentences
       create_sentence_entities_and_entities_from_sentences
-
       # just for testing, this needs to redirect to graphs later on
       redirect_to projects_path
     else
@@ -64,7 +63,7 @@ class ProjectsController < ApplicationController
         s = Sentence.create(review_id: r.id,
                             content: sentence)
         s.update(sentiment_symbol: (analyzer.sentiment s.content),
-                 sentiment_score: (analyzer.score s.content))
+                 sentiment_score: (analyzer.score s.content).round(2))
       end
     end
   end
@@ -80,6 +79,9 @@ class ProjectsController < ApplicationController
       sentence.content.chomp.downcase.split.each do |word|
         unless @stop_words.include? word
           if word[-1] == "!" then word.chomp!("!") end
+          if word[-1] == "," then word.chomp!(",") end
+          if word[-1] == ":" then word.chomp!(":") end
+          if word[-1] == ";" then word.chomp!(";") end
           entity = Entity.find_by name: word
           if entity
             SentenceEntity.create(sentence_id: sentence.id,

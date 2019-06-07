@@ -41,7 +41,7 @@ puts "Seeded #{Project.count} project(s)."
 
 # ---------------------------------------
 # Parse CSV and Creating REVIEW instances
-csv_text = File.read(Rails.root.join('db', 'seeds', 'sample_3_reviews.csv'))
+csv_text = File.read(Rails.root.join('db', 'seeds', 'sample_25_reviews.csv'))
 csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ";")
 csv.each do |row|
   r = Review.new
@@ -71,7 +71,7 @@ analyzer.threshold = 0.1
     s = Sentence.create(review_id: r.id,
                         content: sentence)
     s.update(sentiment_symbol: (analyzer.sentiment s.content),
-             sentiment_score: (analyzer.score s.content))
+             sentiment_score: (analyzer.score s.content).round(2))
   end
 end
 
@@ -92,6 +92,9 @@ end
   sentence.content.chomp.downcase.split.each do |word|
     unless @stop_words.include? word
       if word[-1] == "!" then word.chomp!("!") end
+      if word[-1] == "," then word.chomp!(",") end
+      if word[-1] == ":" then word.chomp!(":") end
+      if word[-1] == ";" then word.chomp!(";") end
       entity = Entity.find_by name:word
       if entity
         SentenceEntity.create(sentence_id: sentence.id,
@@ -110,8 +113,6 @@ puts "Seeded #{Entity.count} entities."
 puts "Seeded #{SentenceEntity.count} sentence entities."
 
 
-puts "Cleaning up database..."
-[SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
-puts "----------------------"
-
-
+# puts "Cleaning up database..."
+# [SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
+# puts "----------------------"
