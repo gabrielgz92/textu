@@ -1,7 +1,28 @@
 .top5_container {
+  background-color: white;
+  border-radius: 20px;
+  padding: 7px 16px;
+}
+
+.top5_info {
   display: flex;
 }
 
-.top5list {
+.graph-top5 {
+  background-color: white;
+  border-radius: 20px;
+  h3 {
+    font-size: 20px;
+  }
+}
 
+.top5list {
+  margin-top: 54px;
+  p {
+    margin: 13px 18px;
+  }
+}
+
+.top5-subtitle {
+  position: relative;
 }
