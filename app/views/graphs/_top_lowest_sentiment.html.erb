@@ -1,6 +1,16 @@
-<div class="container">
-  <h3>Entity mentions with lowest sentiment score</h3>
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-  <%= bar_chart Entity.top_lowest_sentiment, xtitle: "Mentions", ytitle: "Entity" %>
+<div class="top5_container">
+  <h3>Mentions with lowest sentiment score</h3>
+  <div class="top5_info">
 
+    <div class="top5list">
+      <% Entity.top_lowest_sentiment_with_avgs.each do |e| %>
+      <p> <%= e.second %> </p>
+      <% end %>
+    </div>
+
+    <%= bar_chart Entity.top_lowest_sentiment, xtitle: "Mentions", legend: false%>
+
+  </div>
 </div>

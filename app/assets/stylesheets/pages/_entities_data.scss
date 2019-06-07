@@ -1,2 +1,12 @@
-.graphs_grid {
+.graph-display {
+  display: flex;
+}
+
+.graph-display-left {
+  width: 695px;
+  margin-top: 12px;
+}
+
+.graph-display-right {
+  margin-top: 12px;
 }

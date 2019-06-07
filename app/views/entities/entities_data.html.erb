@@ -1,7 +1,13 @@
 <%= render 'shared/sidebar' %>
 <div class="main">
-  <div class="graphs_grid">
-    <%= render 'graphs/top_highest_sentiment' %>
-    <%= render 'graphs/top_lowest_sentiment' %>
+  <div class="graph">
+    <div class="graph-display">
+      <div class="graph-display-left"></div>
+      <div class="graph-display-right">
+        <%= render 'graphs/top_highest_sentiment' %>
+        <br>
+        <%= render 'graphs/top_lowest_sentiment' %>
+      </div>
+    </div>
   </div>
 </div>
