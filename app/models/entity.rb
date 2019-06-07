@@ -62,7 +62,7 @@ class Entity < ApplicationRecord
   end
 
   def self.top_lowest_sentiment_with_avgs
-    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
+    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.avg_sentiment] }.first(5)
   end
 end
 
