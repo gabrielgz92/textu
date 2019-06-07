@@ -1,6 +1,8 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-<div class="graph">
-  <h3>Reviews per month</h3>
-  <%= column_chart reviews_by_month_of_year_path, min: 0, max: 4, xtitle: 'Month', ytitle: 'Number of reviews submitted' %>
+<div class="reviews-by-month-container ">
+  <div class="graph-container-card-b">
+    <h3>Reviews per month</h3>
+    <%= column_chart reviews_by_month_of_year_path, min: 0, max: 4, xtitle: 'Month', ytitle: 'Number of reviews submitted' %>
+  </div>
 </div>
