@@ -1,6 +1,6 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-<div class="container">
+<div class="graph-container-card">
   <h3>Average sentiment score over time</h3>
   <% variable = Entity.find_by(name:"location").sentiment_over_time  %>
   <%= line_chart variable %>
