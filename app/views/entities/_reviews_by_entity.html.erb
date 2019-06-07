@@ -1,0 +1,8 @@
+<div class="reviews-box">
+  <% Entity.find_by(name: 'location').reviews.each do |r|%>
+  <div class="review">
+    <h5> <%= r.reviewer_name %> on <%= r.date %> </h5>
+    <p> <%= r.comments %></p>
+  </div>
+  <% end %>
+</div>
