@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :projects, only: [:index, :new, :create]  do
+    get :reviews_by_month_of_year, to: 'reviews#reviews_by_month_of_year'
     resources :reviews, only: :index
     get '/reviews_for_entity', to: 'entities#reviews_for_entity'
     get '/entities_data', to: 'entities#entities_data'
     resources :entities, only: [:index, :show]
   end
 
-  get :reviews_by_month_of_year, to: 'reviews#reviews_by_month_of_year'
   get :sentiment_score_averages, to:'reviews#sentiment_score_averages'
 
   get '/my-profile', to: 'users#show'

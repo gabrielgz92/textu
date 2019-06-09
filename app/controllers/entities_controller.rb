@@ -7,11 +7,11 @@ class EntitiesController < ApplicationController
   end
 
   def reviews_for_entity
-
+    render :layout => 'tour'
   end
 
   def show
-    @entity = Entity.first
+    @entity = Entity.find(params[:id])
   end
 
   def entities_data
