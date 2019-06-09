@@ -4,10 +4,20 @@
   font-size: 18px;
   display: inline-block;
   padding: 3px 10px;
-
 }
 
 .number-highlight-positive {
   background: $green;
   color: white;
 }
+
+.number-highlight-neutral {
+  background: $blue;
+  color: white;
+}
+
+.number-highlight-negative {
+  background: $red;
+  color:white;
+}
+
