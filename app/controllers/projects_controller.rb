@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   def parse_csv_into_reviews
     csv_file_path = @project.reviews_csv.file.file
     csv_text = File.read(csv_file_path)
-    csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1', row_sep: :auto, col_sep: ";")
+    csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1', row_sep: :auto, col_sep: ",")
     csv.each do |row|
       r = Review.new
       r.listing_id = row['listing_id']
