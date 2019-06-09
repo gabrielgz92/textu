@@ -10,8 +10,9 @@
 
 .layout-tour-content {
   flex: 1;
-  padding-top: 50px;
+  padding-top: 20px;
   position: relative;
+
 
   &:before {
     content: '\f0d9';
@@ -40,6 +41,7 @@
   margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0 0 15px #eee;
+  height: 520px;
 }
 
 .layout-tour-title {

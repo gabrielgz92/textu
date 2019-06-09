@@ -41,8 +41,8 @@ puts "Seeded #{Project.count} project(s)."
 
 # ---------------------------------------
 # Parse CSV and Creating REVIEW instances
-csv_text = File.read(Rails.root.join('db', 'seeds', 'sample_25_reviews.csv'))
-csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ";")
+csv_text = File.read(Rails.root.join('db', 'seeds', '50_reviews.csv'))
+csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ",")
 csv.each do |row|
   r = Review.new
   r.listing_id = row['listing_id']
@@ -113,6 +113,6 @@ puts "Seeded #{Entity.count} entities."
 puts "Seeded #{SentenceEntity.count} sentence entities."
 
 
-# puts "Cleaning up database..."
-# [SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
-# puts "----------------------"
+puts "Cleaning up database..."
+[SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
+puts "----------------------"
