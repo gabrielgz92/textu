@@ -11,7 +11,7 @@ class EntitiesController < ApplicationController
   end
 
   def show
-    @entity = Entity.first
+    @entity = Entity.find(params[:id])
   end
 
   def entities_data
