@@ -7,7 +7,7 @@ class EntitiesController < ApplicationController
   end
 
   def reviews_for_entity
-
+    render :layout => 'tour'
   end
 
   def show
