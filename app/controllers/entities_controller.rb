@@ -3,7 +3,7 @@ class EntitiesController < ApplicationController
   before_action :set_entities, only: %i[index reviews_for_entity]
 
   def index
-
+    render :layout => 'tour'
   end
 
   def reviews_for_entity
