@@ -2,7 +2,9 @@
 <div class="main">
   <div class="graph">
     <div class="graph-display">
-      <div class="graph-display-left"></div>
+      <div class="graph-display-left sentiment_score_average_container">
+        <%= render 'graphs/sentiment_score_average' %>
+      </div>
       <div class="graph-display-right">
         <%= render 'graphs/top_highest_sentiment' %>
         <br>
