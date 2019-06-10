@@ -1,5 +1,5 @@
 class EntitiesController < ApplicationController
-  before_action :set_project, only: %i[index show entites_data]
+  before_action :set_project, only: %i[index show entites_data index]
   before_action :set_entities, only: %i[index reviews_for_entity]
 
   def index
@@ -40,7 +40,11 @@ class EntitiesController < ApplicationController
   end
 
   def set_entities
-    @entities = Project.find(params[:project_id]).entities.group(:name).order('count_id desc').count('id')
+    if params[:query].present?
+      @entities = Project.find(params[:project_id]).entities.search_by_entity_name(params[:query]).reorder(nil).group(:name).order('count_id desc').count('id')
+    else
+      @entities = Project.find(params[:project_id]).entities.group(:name).order('count_id desc').count('id')
+    end
     # returns a hash of entity list in descending order
   end
 
@@ -48,9 +52,12 @@ class EntitiesController < ApplicationController
     params.permit(:entity)
   end
 
+  def avg_entity_symbol
+    @project.sentences.pluck(:sentiment_score).reduce(&:+) / @entity.sentence_entities.count
+  end
+
   def first_word_score
     first_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.first
-    byebug
     test_re = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
     test_re[0].sentiment_score
   end
