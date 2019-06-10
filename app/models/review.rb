@@ -4,15 +4,11 @@ class Review < ApplicationRecord
   has_many :sentence_entities
   has_many :entities, through: :sentence_entities
 
-  # def self.best_review
-  #   scores = {}
-  #   Review.all.each do |reviews|
-  #     reviews.sentences.each do |sentence|
-  #       scores << sentence.sentiment_score
-  #     end
-  #   end
-  #   p scores
-  # end
+  def self.best_review(project_id)
+    Project.find(project_id).reviews.each do |review|
+      review.avg_sentiment
+    end
+  end
 
   def sentences_count
     sentences.count
