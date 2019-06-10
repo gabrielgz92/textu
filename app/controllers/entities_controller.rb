@@ -6,6 +6,8 @@ class EntitiesController < ApplicationController
     @entity = Entity.find_by(name: params[:entity])
     @first_word_score = first_word_score
     @last_word_score = last_word_score
+    @first_month = first_month
+    @last_month = last_month
     render layout: 'tour'
   end
 
@@ -69,6 +71,16 @@ class EntitiesController < ApplicationController
       last_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.second
       Review.find(last_word[1]).sentences.first.sentiment_score
     end
+  end
+
+   def first_month
+    date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.first[0].to_i
+    Date::MONTHNAMES[date]
+  end
+
+  def last_month
+    date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.sort.reverse.first[0].to_i
+    Date::MONTHNAMES[date]
   end
 end
 

@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
     if params[:entity_id]
       @entity = Entity.find(params[:entity_id])
       @reviews = @entity.reviews
+
     else
       @reviews = @project.reviews
     end
