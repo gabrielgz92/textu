@@ -8,7 +8,7 @@ class EntitiesController < ApplicationController
   end
 
   def reviews_for_entity
-   @entity = Entity.find(params[:id])
+    @entity = Entity.find(params[:id])
   end
 
   def entities_data

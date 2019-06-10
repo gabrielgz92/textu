@@ -1,3 +1,7 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-<%= line_chart @entity.sentiment_over_time %>
+<% if @entity %>
+  <%= line_chart @entity.sentiment_over_time %>
+<% else %>
+<p>Let's put a default yeti saying search for entities here</p>
+<% end %>
