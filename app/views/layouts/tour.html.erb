@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -29,7 +29,7 @@
                                    project_reviews_path(params[:project_id])}"  %>
             </li>
             <li>
-            <%= link_to "Review traffic", project_reviews_by_month_graph_path(params[:project_id]),
+            <%= link_to "Reviews traffic", project_reviews_by_month_graph_path(params[:project_id]),
                                           class: "#{current? "layout-tour-menu-item-active",
                                           project_reviews_by_month_graph_path(params[:project_id])}"  %>
             </li>
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="layout-tour-content">
-    <h1 class="layout-tour-title">Keyword insights</h1>
+    <h1 class="layout-tour-title"><%= yield(:title) %></h1>
 
         <div class="layout-tour-content-inner">
               <%= yield %>
