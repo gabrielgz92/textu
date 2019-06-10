@@ -1,15 +1,6 @@
-<%= render 'shared/sidebar' %>
-<div class="main">
-  <div class="graph">
-    <div class="graph-display">
-      <div class="graph-display-left sentiment_score_average_container">
-        <%= render 'graphs/sentiment_score_average' %>
-      </div>
-      <div class="graph-display-right">
-        <%= render 'graphs/top_highest_sentiment' %>
-        <br>
-        <%= render 'graphs/top_lowest_sentiment' %>
-      </div>
-    </div>
-  </div>
+<div class="layout-tour-intro">
+  <p> Here's a breakdown of your reviews. Your busiest month was April 2018, and your quietest months were January, February and April.</p>
 </div>
+  <%= render 'graphs/sentiment_score_average' %>
+  <%= render 'graphs/top_highest_sentiment' %>
+  <%= render 'graphs/top_lowest_sentiment' %>

@@ -19,6 +19,7 @@ class EntitiesController < ApplicationController
 
   def entities_data
     @datasets = SentenceEntity.joins(:entity, :sentence).reject{|sentence_entity| sentence_entity.entity.sentences.count < 7}.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.count, y: sentence_entity.entity.avg_sentiment}] } }
+    render :layout => 'tour'
   end
 
   private
