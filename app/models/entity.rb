@@ -15,23 +15,6 @@ class Entity < ApplicationRecord
     sentence_entities.count
   end
 
-  # def self.sentiment_over_time
-  #   # average_sentiment, date_created
-  #   sentiment_scores = []
-  #   entity = Entity.find_by(name: "location")
-  #   reviews = entity.reviews
-  #   reviews.each do |review|
-  #     # compute sentiment score from occurences of entity within sentences
-  #     sentences = review.sentences
-  #     # pluck out sentences with the entity inside them
-  #     occurences = sentences.select { |sentence| sentence.content.include? "location" }
-  #     average_sentiment = occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count
-  #     sentiment_scores << { date_created: review.date, average_sentiment: average_sentiment }
-  #   # sentiment_scores << [review.date, average_sentiment]
-  #   binding.pry
-  #     sentiment_scores
-  #   end
-  # end
   def reviews_for_entity
     {review_date: reviews.pluck(:date), listing_id: reviews.pluck(:listing_id), review: reviews.pluck(:comments)}
   end
@@ -52,24 +35,22 @@ class Entity < ApplicationRecord
     sentiment_scores
   end
 
-  def self.top_highest_sentiment
-    Entity.all.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(5)
+  def self.top_highest_sentiment_for_project(project_id)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(5)
   end
 
-  def self.top_highest_sentiment_with_avgs
-    Entity.all.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.avg_sentiment] }.first(5)
+  def self.top_highest_sentiment_with_avgs_for_project(project_id)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.avg_sentiment] }.first(5)
   end
 
-  def self.top_lowest_sentiment
-    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
+  def self.top_lowest_sentiment_for_project(project_id)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
   end
 
-  def self.top_lowest_sentiment_with_avgs
-    Entity.all.sort_by(&:avg_sentiment).map { |x| [x.name, x.avg_sentiment] }.first(5)
+  def self.top_lowest_sentiment_with_avgs_for_project(project_id)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.avg_sentiment] }.first(5)
   end
 end
-
-
 
 
 
