@@ -19,7 +19,7 @@ class Entity < ApplicationRecord
   end
 
   def occurrences
-    sentence_entities.count
+    sentence_entities.size
   end
 
   def reviews_for_entity
@@ -43,19 +43,19 @@ class Entity < ApplicationRecord
   end
 
   def self.top_highest_sentiment_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(2)
   end
 
   def self.top_highest_sentiment_with_avgs_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.avg_sentiment] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name] }.first(2)
   end
 
   def self.top_lowest_sentiment_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(2)
   end
 
   def self.top_lowest_sentiment_with_avgs_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.avg_sentiment] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name] }.first(2)
   end
 end
 
