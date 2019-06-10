@@ -74,13 +74,17 @@ class EntitiesController < ApplicationController
   end
 
    def first_month
-    date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.first[0].to_i
-    Date::MONTHNAMES[date]
+    if @entity
+      date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.first[0].to_i
+      Date::MONTHNAMES[date]
+    end
   end
 
   def last_month
-    date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.sort.reverse.first[0].to_i
-    Date::MONTHNAMES[date]
+    if @entity
+      date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.sort.reverse.first[0].to_i
+      Date::MONTHNAMES[date]
+    end
   end
 end
 
