@@ -1,5 +1,5 @@
 class EntitiesController < ApplicationController
-  before_action :set_project, only: %i[show entites_data]
+  before_action :set_project, only: %i[show entites_data index]
   before_action :set_entities, only: %i[index reviews_for_entity]
 
   def index
@@ -38,5 +38,9 @@ class EntitiesController < ApplicationController
 
   def entities_params
     params.permit(:entity)
+  end
+
+  def avg_entity_symbol
+    @project.sentences.pluck(:sentiment_score).reduce(&:+) / @entity.sentence_entities.count
   end
 end
