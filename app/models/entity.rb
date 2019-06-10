@@ -12,7 +12,7 @@ class Entity < ApplicationRecord
   end
 
   def occurrences
-    sentence_entities.count
+    sentence_entities.size
   end
 
   def reviews_for_entity

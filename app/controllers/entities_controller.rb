@@ -18,7 +18,15 @@ class EntitiesController < ApplicationController
   end
 
   def entities_data
-    @datasets = SentenceEntity.joins(:entity, :sentence).reject{|sentence_entity| sentence_entity.entity.sentences.count < 7}.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.count, y: sentence_entity.entity.avg_sentiment}] } }
+    # 1. get all the sentence entities and include entities and sentences via their relations
+
+    sentence_entities = SentenceEntity.joins(:entity, :sentence).includes(entity: :sentences)
+     # 2. reject all sentence entities where count < 7
+
+    filtered_entities = sentence_entities.reject{ |sentence_entity| sentence_entity.entity.sentences.size < 7 }
+    # 3. map the filtered data into a form that chart.js like
+    @datasets = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
+
   end
 
   private
