@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_project, only: %i[index create reviews_by_month_of_year]
 
   def index
+    render :layout => 'tour'
   end
 
   def reviews_by_month_of_year
