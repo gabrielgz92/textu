@@ -113,10 +113,8 @@ puts "Seeded #{Entity.count} entities."
 puts "Seeded #{SentenceEntity.count} sentence entities."
 
 
-<<<<<<< HEAD
+
 # puts "Cleaning up database..."
-=======
 puts "Cleaning up database..."
->>>>>>> 8bba3ab6c255c225c971fc8958843cc04e8b3e4e
 # [SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
 puts "----------------------"
