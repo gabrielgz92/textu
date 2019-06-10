@@ -1,7 +1,7 @@
 <ul class="nav navbar justify-content-end  sticky-top">
   <% if user_signed_in? %>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle mr-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="https://picsum.photos/200" alt="" class="avatar"></a>
+      <a class="nav-link dropdown-toggle mr-4 avatar-center" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="https://picsum.photos/200" alt="" class="avatar"></a>
       <div class="dropdown-menu mr-3">
           <%= link_to 'My Profile', my_profile_path,class: "dropdown-item" %>
         <a class="dropdown-item" href="#two">two</a>
