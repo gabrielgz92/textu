@@ -22,7 +22,11 @@ class EntitiesController < ApplicationController
   end
 
   def set_entities
-    @entities = Project.find(params[:project_id]).entities.group(:name).order('count_id desc').count('id')
+    if params[:query].present?
+      @entities = Project.find(params[:project_id]).entities.search_by_entity_name(params[:query]).reorder(nil).group(:name).order('count_id desc').count('id')
+    else
+      @entities = Project.find(params[:project_id]).entities.group(:name).order('count_id desc').count('id')
+    end
     # returns a hash of entity list in descending order
   end
 
