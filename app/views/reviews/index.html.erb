@@ -1,6 +1,7 @@
 <div class="layout-tour-intro">
-<p> Here's a breakdown of your reviews. Your busiest month was <%= @busiest_month %>, and your quietest month was <%= @quietest_month %>.</p>
+  <p> Here's a breakdown of your reviews. Your busiest month was <span class="number-highlight number-highlight-positive"><%=@busiest_month%></span>, and your quietest month was <span class="number-highlight number-highlight-negative"><%=@quietest_month%></span>.</p>
 </div>
+
 <%= render 'graphs/reviews_by_month' %>
 
 
