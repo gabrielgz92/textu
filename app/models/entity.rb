@@ -1,4 +1,11 @@
 class Entity < ApplicationRecord
+  include PgSearch
+  pg_search_scope :search_by_entity_name,
+                  against: [:name],
+                  using: {
+                    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+                  }
+
   has_many :sentence_entities
   has_many :sentences, through: :sentence_entities
   has_many :reviews, through: :sentences
@@ -12,7 +19,7 @@ class Entity < ApplicationRecord
   end
 
   def occurrences
-    sentence_entities.count
+    sentence_entities.size
   end
 
   def reviews_for_entity
@@ -36,19 +43,19 @@ class Entity < ApplicationRecord
   end
 
   def self.top_highest_sentiment_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(2)
   end
 
   def self.top_highest_sentiment_with_avgs_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.avg_sentiment] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name] }.first(2)
   end
 
   def self.top_lowest_sentiment_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(2)
   end
 
   def self.top_lowest_sentiment_with_avgs_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.avg_sentiment] }.first(5)
+    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name] }.first(2)
   end
 end
 
