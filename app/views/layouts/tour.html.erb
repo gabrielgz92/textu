@@ -23,7 +23,7 @@
             <li><%= link_to('Review traffic', project_reviews_path(params[:project_id])) %></li>
             <li><%= link_to('Common words', project_entities_data_path) %></li>
             <li><%= link_to('Keyword insights', project_entities_path) %></li>
-            <li>Conclusion</li>
+            <li><%= link_to('Conclusion', project_conclusion_path(params[:project_id])) %></li>
 
           </ol>
         </div>
