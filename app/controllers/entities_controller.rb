@@ -8,6 +8,12 @@ class EntitiesController < ApplicationController
   end
 
   def reviews_for_entity
+    @reviews = Entity.reviews_for_entity
+    render :layout => 'tour'
+  end
+
+  def show
+    @entity = Entity.find(params[:id])
     render layout: 'tour'
   end
 

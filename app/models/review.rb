@@ -5,9 +5,11 @@ class Review < ApplicationRecord
   has_many :entities, through: :sentence_entities
 
   def self.best_review(project_id)
-    Project.find(project_id).reviews.each do |review|
-      review.avg_sentiment
-    end
+    Project.find(project_id).reviews.sort_by(&:avg_sentiment).reverse!.map { |r| [r, r.avg_sentiment] }.first
+  end
+
+  def self.worst_review(project_id)
+    Project.find(project_id).reviews.sort_by(&:avg_sentiment).map { |r| [r, r.avg_sentiment] }.first
   end
 
   def sentences_count
