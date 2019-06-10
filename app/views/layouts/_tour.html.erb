@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TODO</title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+  </head>
+  <body>
+    <%= render 'shared/navbar' %>
+    <%= javascript_include_tag 'application' %>
+    <div class="layout-tour">
+      <div class="layout-tour-navigator">
+        <img src="<%= image_path("happy.svg") %>" class="navigator-mascot" alt="">
+        <div class="layout-tour-menu">
+          <h3 class="layout-tour-menu-title">Data Tour</h3>
+          <ol class="layout-tour-menu-items">
+            <li>Welcome</li>
+            <li>Your first lesson</li>
+            <li>Common words</li>
+            <li class="layout-tour-menu-item-active">Keyword insights</li>
+            <li>Conclusion</li>
+
+          </ol>
+        </div>
+      </div>
+      <div class="layout-tour-content">
+    <h1 class="layout-tour-title">Keyword insights</h1>
+
+        <div class="layout-tour-content-inner">
+              <%= yield %>
+
+        </div>
+      </div>
+    </div>
+    <%= javascript_pack_tag 'application' %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </body>
+  <script>
+    function toggleNav() {
+      document.getElementById("mySidebar").classList.toggle("sidebar-closed")
+      document.querySelector(".main").classList.toggle("sidebar-closed");
+      document.getElementById("textu-logo").classList.toggle("sidebar-closed");
+    }
+</script>
+</html>

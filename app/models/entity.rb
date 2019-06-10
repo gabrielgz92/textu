@@ -32,6 +32,9 @@ class Entity < ApplicationRecord
   #     sentiment_scores
   #   end
   # end
+  def reviews_for_entity
+    {review_date: reviews.pluck(:date), listing_id: reviews.pluck(:listing_id), review: reviews.pluck(:comments)}
+  end
 
   def sentiment_over_time
     # average_sentiment, date_created

@@ -4,11 +4,11 @@ class EntitiesController < ApplicationController
 
   def index
     @entity = Entity.find_by(name: params[:entity])
-    render :layout => 'tour'
+    render layout: 'tour'
   end
 
   def reviews_for_entity
-    @entity = Entity.find(params[:id])
+    render layout: 'tour'
   end
 
   def entities_data

@@ -1,8 +1,13 @@
-<%= render 'shared/sidebar' %>
-<div class="main">
+
+
+         <div class="layout-tour-intro">
+
+<p>Over time, the score for the keyword "location" has changed from <span class="number-highlight number-highlight-positive">+2.77</span> in October 2014 to <span class="number-highlight number-highlight-positive">+0.81</span> in January 2016.</p>
+</div>
+
+<div class="entity-chart">
   <%= render 'entities_list' %>
-  <div class="entities-graph-card">
-    <h2>Displaying reviews for selected entity</h2>
-    <%= render 'reviews_by_entity' %>
+  <div class="entity-chart-graph">
+    <%= render "reviews_by_entity" %>
   </div>
 </div>
