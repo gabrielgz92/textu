@@ -1,4 +1,11 @@
 class Entity < ApplicationRecord
+  include PgSearch
+  pg_search_scope :search_by_entity_name,
+                  against: [:name],
+                  using: {
+                    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+                  }
+
   has_many :sentence_entities
   has_many :sentences, through: :sentence_entities
   has_many :reviews, through: :sentences

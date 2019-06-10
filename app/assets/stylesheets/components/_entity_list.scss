@@ -1,14 +1,16 @@
-.entities-list {
+.entities-list-item {
   font-size: 14px;
   width: 196px;
   margin-top: 4px;
   margin-bottom: 8px;
   margin-right: 0;
-  height: 400px;
+  height: 360px;
   overflow-y: auto;
+  margin-left: 8px;
 
 }
 
-.list-group-item {
-
+.sticky-search {
+  width: 95%;
+  margin-left: 8px;
 }
