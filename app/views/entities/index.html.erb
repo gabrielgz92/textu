@@ -1,7 +1,8 @@
-         <div class="layout-tour-intro">
-
-<p>Over time, the score for the keyword "<%= params[:entity] %>" has changed from <span class="number-highlight number-highlight-positive">+2.77</span> in October 2014 to <span class="number-highlight number-highlight-positive">+0.81</span> in January 2016. "<%= @entity.name.capitalize %>" was mentioned <%= @entity.occurrences %> times in this period! </p>
-</div>
+<% if @entity %>
+  <div class="layout-tour-intro">
+    <p>Over time, the score for the keyword "<%= params[:entity] %>" has changed from <span class="number-highlight number-highlight-positive">+2.77</span> in October 2014 to <span class="number-highlight number-highlight-positive">+0.81</span> in January 2016. "<%= @entity.name.capitalize %>" was mentioned <%= @entity.occurrences %> times in this period! </p>
+  </div>
+<% end %>
 
 <div class="entity-chart">
   <%= render 'entities_list' %>
