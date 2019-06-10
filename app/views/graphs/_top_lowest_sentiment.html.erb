@@ -5,12 +5,12 @@
   <div class="top5_info">
 
     <div class="top5list">
-      <% Entity.top_lowest_sentiment_with_avgs.each do |e| %>
+      <% Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
       <p> <%= e.second %> </p>
       <% end %>
     </div>
 
-    <%= bar_chart Entity.top_lowest_sentiment, xtitle: "Mentions", legend: false%>
+    <%= bar_chart Entity.top_lowest_sentiment_for_project(params[:project_id]), xtitle: "Mentions", legend: false%>
 
   </div>
 </div>

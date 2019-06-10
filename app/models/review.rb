@@ -13,6 +13,7 @@ class Review < ApplicationRecord
   #   end
   #   p scores
   # end
+
   def sentences_count
     sentences.count
   end
