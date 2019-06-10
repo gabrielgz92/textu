@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:index, :new, :create]  do
     get :reviews_by_month_of_year, to: 'reviews#reviews_by_month_of_year'
-    resources :reviews, only: :index
+    get :conclusion, to: 'reviews#conclusion'
+    resources :reviews, only: [:index]
     get '/reviews_for_entity', to: 'entities#reviews_for_entity'
     get '/entities_data', to: 'entities#entities_data'
     resources :entities, only: [:index]

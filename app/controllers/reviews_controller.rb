@@ -16,6 +16,10 @@ class ReviewsController < ApplicationController
     render json: SentenceEntity.joins(:entity, :sentence).map { |x| [x.entity.sentences.count, x.entity.avg_sentiment] }
   end
 
+  def conclusion
+    render layout: 'tour'
+  end
+
   private
 
   def busiest_month
