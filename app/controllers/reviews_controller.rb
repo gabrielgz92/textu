@@ -20,12 +20,14 @@ class ReviewsController < ApplicationController
 
   def busiest_month
     reviews = @project.reviews
-    reviews.group_by_month(:date, format: "%m").count.sort_by { |_, v| v }.reverse.first[0].to_datetime.strftime('%B')
+    month_number = reviews.group_by_month(:date, format: "%m").count.sort_by { |_, v| v }&.reverse&.first[0]&.to_i
+    Date::MONTHNAMES[month_number]
   end
 
   def quietest_month
     reviews = @project.reviews
-    reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |_, v| v }.reverse.last[0].to_datetime.strftime('%B')
+    month_number = reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |_, v| v }&.reverse&.last[0]&.to_i
+    Date::MONTHNAMES[month_number]
   end
 
   def set_project
