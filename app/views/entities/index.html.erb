@@ -8,7 +8,7 @@
         <span class="number-highlight number-highlight-negative">
           <%= @first_word_score %></span>
       <% end %>
-      in !!!MONTH!!! to
+      in <%= @first_month %> to
        <% if @last_word_score > 0 %>
         <span class="number-highlight number-highlight-positive">
           <%= @last_word_score %></span>
@@ -16,7 +16,7 @@
         <span class="number-highlight number-highlight-negative">
           <%= @last_word_score %></span>
       <% end %>
-      in !!!MONTH!!!
+      in <%= @last_month %>.
     "<%= @entity.name.capitalize %>" was mentioned <%= @entity.occurrences %> times in this period! </p>
   </div>
 <% end %>
