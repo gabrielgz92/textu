@@ -3,15 +3,12 @@ class EntitiesController < ApplicationController
   before_action :set_entities, only: %i[index reviews_for_entity]
 
   def index
+    @entity = Entity.find_by(name: params[:entity])
     render :layout => 'tour'
   end
 
   def reviews_for_entity
-
-  end
-
-  def show
-    @entity = Entity.find(params[:id])
+   @entity = Entity.find(params[:id])
   end
 
   def entities_data
@@ -25,6 +22,11 @@ class EntitiesController < ApplicationController
   end
 
   def set_entities
-    @entities = Project.find(params[:project_id]).entities
+    @entities = Project.find(params[:project_id]).entities.group(:name).order('count_id desc').count('id')
+    # returns a hash of entity list in descending order
+  end
+
+  def entities_params
+    params.permit(:entity)
   end
 end

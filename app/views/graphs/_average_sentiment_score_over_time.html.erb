@@ -1,5 +1,3 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-  <% variable = Entity.find_by(name:"location").sentiment_over_time  %>
-  <%= line_chart variable %>
-
+<%= line_chart @entity.sentiment_over_time %>

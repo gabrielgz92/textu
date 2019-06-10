@@ -6,6 +6,8 @@
 <div class="entity-chart">
   <%= render 'entities_list' %>
   <div class="entity-chart-graph">
-    <%= render "entities/show" %>
+    <div class="graph-container">
+      <%= render 'graphs/average_sentiment_score_over_time' %>
+    </div>
   </div>
 </div>

@@ -5,17 +5,11 @@
       <input class="form-control" type="search" placeholder="type keyword" aria-label="Search">
       </form>
     </li>
-    <% sorted_entities = [] %>
-    <% @entities.each do |entity| %>
-      <% if sorted_entities.exclude?(entity)  %>
-        <% sorted_entities << entity %>
-      <% end %>
-    <% end %>
-      <% sorted_entities.sort_by(&:occurrences).reverse!.each do  |sorted_entity|%>
-      <%= link_to project_entity_path(params[:project_id], sorted_entity) do %>
+    <% @entities.each do |entity, occurrence| %>
+      <%= link_to project_entities_path(params[:project_id], entity: entity ) do %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= sorted_entity.name %>
-          <span class="badge badge-primary badge-pill"><%= sorted_entity.occurrences %></span>
+          <%= entity %>
+          <span class="badge badge-primary badge-pill"><%= occurrence %></span>
         </li>
       <% end %>
     <% end %>

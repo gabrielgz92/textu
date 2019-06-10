@@ -69,7 +69,7 @@ analyzer.threshold = 0.1
 @reviews.each do |r|
   r.comments.split(".").each do |sentence|
     s = Sentence.create(review_id: r.id,
-                        content: sentence)
+                        content: sentence.downcase)
     s.update(sentiment_symbol: (analyzer.sentiment s.content),
              sentiment_score: (analyzer.score s.content).round(2))
   end
@@ -113,6 +113,6 @@ puts "Seeded #{Entity.count} entities."
 puts "Seeded #{SentenceEntity.count} sentence entities."
 
 
-puts "Cleaning up database..."
-[SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
+# puts "Cleaning up database..."
+# [SentenceEntity, Sentence, Review, Project, Entity].each(&:destroy_all)
 puts "----------------------"
