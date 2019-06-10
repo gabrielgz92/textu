@@ -1,6 +1,23 @@
 <% if @entity %>
   <div class="layout-tour-intro">
-    <p>Over time, the score for the keyword "<%= params[:entity] %>" has changed from <span class="number-highlight number-highlight-positive"><%= @first_word_score %></span> in October 2014 to <span class="number-highlight number-highlight-positive"><%= @last_word_score %></span> in January 2016. "<%= @entity.name.capitalize %>" was mentioned <%= @entity.occurrences %> times in this period! </p>
+    <p>Over time, the score for the keyword "<%= params[:entity] %>" has changed from
+      <% if @first_word_score > 0 %>
+        <span class="number-highlight number-highlight-positive">
+          <%= @first_word_score %></span>
+      <% else %>
+        <span class="number-highlight number-highlight-negative">
+          <%= @first_word_score %></span>
+      <% end %>
+      in !!!MONTH!!! to
+       <% if @last_word_score > 0 %>
+        <span class="number-highlight number-highlight-positive">
+          <%= @last_word_score %></span>
+      <% else %>
+        <span class="number-highlight number-highlight-negative">
+          <%= @last_word_score %></span>
+      <% end %>
+      in !!!MONTH!!!
+    "<%= @entity.name.capitalize %>" was mentioned <%= @entity.occurrences %> times in this period! </p>
   </div>
 <% end %>
 
