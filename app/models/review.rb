@@ -21,4 +21,5 @@ class Review < ApplicationRecord
   def avg_sentiment
     (sentences.pluck(:sentiment_score).reduce(&:+) / sentences_count).round(2)
   end
+
 end

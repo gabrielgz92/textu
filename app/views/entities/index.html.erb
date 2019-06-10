@@ -1,11 +1,13 @@
          <div class="layout-tour-intro">
 
-<p>Over time, the score for the keyword "location" has changed from <span class="number-highlight number-highlight-positive">+2.77</span> in October 2014 to <span class="number-highlight number-highlight-positive">+0.81</span> in January 2016.</p>
+<p>Over time, the score for the keyword "location" has changed from <span class="number-highlight number-highlight-positive">+2.77</span> in October 2014 to <span class="number-highlight number-highlight-positive">+0.81</span> in January 2016. The word "location" was mentioned x times in this period! </p>
 </div>
 
 <div class="entity-chart">
   <%= render 'entities_list' %>
   <div class="entity-chart-graph">
-    <%= render "entities/show" %>
+    <div class="graph-container">
+      <%= render 'graphs/average_sentiment_score_over_time' %>
+    </div>
   </div>
 </div>
