@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   def index
     @busiest_month = busiest_month
     @quietest_month = quietest_month
-    render :layout => 'tour'
+    render layout: 'tour'
   end
 
   def reviews_by_month_of_year
@@ -20,12 +20,12 @@ class ReviewsController < ApplicationController
 
   def busiest_month
     reviews = @project.reviews
-    reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |k, v| v }.reverse.first[0]
+    reviews.group_by_month(:date, format: "%m").count.sort_by { |_, v| v }.reverse.first[0].to_datetime.strftime('%B')
   end
 
   def quietest_month
     reviews = @project.reviews
-    reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |k, v| v }.reverse.last[0]
+    reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |_, v| v }.reverse.last[0].to_datetime.strftime('%B')
   end
 
   def set_project
