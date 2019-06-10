@@ -40,7 +40,6 @@ class EntitiesController < ApplicationController
 
   def first_word_score
     first_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.first
-    byebug
     test_re = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
     test_re[0].sentiment_score
   end
