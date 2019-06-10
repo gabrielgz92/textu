@@ -32,16 +32,19 @@ class Entity < ApplicationRecord
   #     sentiment_scores
   #   end
   # end
+  def reviews_for_entity
+    {review_date: reviews.pluck(:date), listing_id: reviews.pluck(:listing_id), review: reviews.pluck(:comments)}
+  end
 
   def sentiment_over_time
     # average_sentiment, date_created
     sentiment_scores = {}
-    reviews = self.reviews
+    reviews = self.reviews.includes(:sentences)
     reviews.each do |review|
       # compute sentiment score from occurences of entity within sentences
       sentences = review.sentences
       # pluck out sentences with the entity inside them
-      occurences = sentences.select { |sentence| sentence.content.include? name }
+      occurences = sentences.select { |sentence| sentence.content.include? self.name }
       average_sentiment = occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count
       sentiment_scores[review.date] = average_sentiment
       # sentiment_scores << [review.date, average_sentiment]

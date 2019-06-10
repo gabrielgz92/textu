@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :reviews, only: :index
     get '/reviews_for_entity', to: 'entities#reviews_for_entity'
     get '/entities_data', to: 'entities#entities_data'
-    resources :entities, only: [:index, :show]
+    resources :entities, only: [:index]
   end
 
   get :sentiment_score_averages, to:'reviews#sentiment_score_averages'
