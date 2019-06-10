@@ -57,14 +57,18 @@ class EntitiesController < ApplicationController
   end
 
   def first_word_score
-    first_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.first
-    test_re = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
-    test_re[0].sentiment_score
+    if @entity
+      first_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.first
+      test_re = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
+      test_re[0].sentiment_score
+    end
   end
 
   def last_word_score
-    last_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.second
-    Review.find(last_word[1]).sentences.first.sentiment_score
+    if @entity
+      last_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.second
+      Review.find(last_word[1]).sentences.first.sentiment_score
+    end
   end
 end
 
