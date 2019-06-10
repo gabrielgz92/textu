@@ -18,6 +18,8 @@ class ReviewsController < ApplicationController
 
   def reviews_by_month_graph
     @reviews = @project.reviews
+    @busiest_month = busiest_month
+    @quietest_month = quietest_month
     render :layout => 'tour'
   end
 
@@ -31,6 +33,16 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def busiest_month
+    reviews = @project.reviews
+    reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |k, v| v }.reverse.first[0]
+  end
+
+  def quietest_month
+    reviews = @project.reviews
+    reviews.group_by_month(:date, format: "%m %Y").count.sort_by { |k, v| v }.reverse.last[0]
+  end
 
   def set_project
     @project = Project.find(params[:project_id])

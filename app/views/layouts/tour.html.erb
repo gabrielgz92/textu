@@ -18,11 +18,13 @@
         <div class="layout-tour-menu">
           <h3 class="layout-tour-menu-title">Data Tour</h3>
           <ol class="layout-tour-menu-items">
-            <li>Welcome</li>
-            <li>Your first lesson</li>
-            <li>Common words</li>
-            <li class="layout-tour-menu-item-active">Keyword insights</li>
+            <li><%= link_to('Projects', projects_path) %></li>
+            <li><%= link_to('Reviews', project_reviews_for_entity_path(params[:project_id])) %></li>
+            <li><%= link_to('Review traffic', project_reviews_path(params[:project_id])) %></li>
+            <li><%= link_to('Common words', project_entities_data_path) %></li>
+            <li><%= link_to('Keyword insights', project_entities_path) %></li>
             <li>Conclusion</li>
+
           </ol>
         </div>
       </div>

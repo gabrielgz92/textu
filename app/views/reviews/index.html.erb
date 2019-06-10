@@ -1,3 +1,4 @@
+
 <div class="enties">
   <% @popular_entities_in_project.each do  |entity| %>
   <%= link_to "#{entity.name} (#{entity.occurrences})", project_reviews_path(@project, :entity_id => entity.id), :class => 'number-highlight number-highlight-positive'  %>
@@ -41,3 +42,4 @@
     <% end %>
   </tbody>
 </table>
+
