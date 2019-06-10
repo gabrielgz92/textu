@@ -5,3 +5,9 @@
   border-radius: 6px;
   width: 1000px;
 }
+
+.review-body, .review-header{
+  display: flex;
+  justify-content: space-evenly;
+}
+
