@@ -21,3 +21,25 @@
   color:white;
 }
 
+.number-highlight-bigger {
+  background: $light-gray;
+  font-weight: bold;
+  font-size: 24spx;
+  display: inline-block;
+  padding: 3px 10px;
+}
+
+.number-highlight-bigger-positive {
+  background: $green;
+  color: white;
+}
+
+.number-highlight-bigger-neutral {
+  background: $blue;
+  color: white;
+}
+
+.number-highlight-bigger-negative {
+  background: $red;
+  color:white;
+}

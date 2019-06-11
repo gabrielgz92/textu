@@ -1,1 +1,16 @@
 <% content_for :title, "Conclusion" %>
+
+<div class="layout-tour-intro">
+
+  <p> Hope you enjoyed our data tour!</p>
+  <h4> From all the <strong><%= Review.current_project_reviews(params[:project_id]) %> reviews</strong> submitted, the most of them are
+    <%result = Review.total_reviews_avg_sentiment(params[:project_id]) %>
+    <% if result > 0 %>
+    <span class="number-highlight-bigger number-highlight-bigger-positive"><%= "positive" %></span>
+    <% else %>
+    <span class="number-highlight-bigger number-highlight-bigger-negative"><%= "negative" %></span>
+    <% end %>!
+  </h4>
+  <p>Average sentiment score was <%= result %> ;)</p>
+
+</div>

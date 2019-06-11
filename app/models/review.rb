@@ -20,4 +20,12 @@ class Review < ApplicationRecord
     (sentences.pluck(:sentiment_score).reduce(&:+) / sentences_count).round(2)
   end
 
+  def self.total_reviews_avg_sentiment(project_id)
+    scores = Project.find(project_id).reviews.first(3).map(&:avg_sentiment)
+    (scores.reduce(:+) / scores.count).round(2)
+  end
+
+  def self.current_project_reviews(project_id)
+    Project.find(project_id).reviews.count
+  end
 end
