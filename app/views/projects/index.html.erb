@@ -32,6 +32,11 @@
 <div class="layout-tour">
   <div class="layout-tour-navigator">
     <img src="<%= image_path("yeti.png") %>" class="project-mascot" alt="">
+    <div class="welcome-entry">
+      <i class="fas fa-caret-up"></i>
+      Welcome to Textu, I'm Yeti, your tourguide, let's upload our first project!
+      <span class = "close-welcome"><i class="fas fa-times"></i></span>
+    </div>
   </div>
   <div class="layout-tour-project-content">
     <h1 class="layout-tour-title">My Projects</h1>
@@ -42,7 +47,7 @@
           <% counter += 1 %>
           <%= link_to project_reviews_path(project) do %>
           <div class="project-card">
-              <div class="project-card-img"><img src="https://picsum.photos/320/160" alt=""></div>
+              <div class="project-card-img"><img src="https://cdn.dribbble.com/users/998341/screenshots/4960787/moving_mountain.gif" alt=""></div>
                 <div class="project-card-info d-flex justify-content-between">
                     <div class="project-card-content">
                       <% if project.project_name %>
@@ -76,6 +81,11 @@
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    console.log( "ready!" );
+  });
+</script>
 
 
 
