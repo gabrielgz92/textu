@@ -39,6 +39,8 @@ class EntitiesController < ApplicationController
     @firstLowest = entitiesWithLowestSentiment.first
     @secondLowest = entitiesWithLowestSentiment.second
 
+    # 3. map the filtered data into a form that chart.js like
+    @datasets = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
     render layout: 'tour'
   end
 

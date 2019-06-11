@@ -42,21 +42,10 @@ class Entity < ApplicationRecord
     sentiment_scores
   end
 
-  # highest/lowest without averages
-
-  def self.top_highest_sentiment_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(5)
-  end
-
-
-  def self.top_lowest_sentiment_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(5)
-  end
-
   # highest/lowest with averages
 
   def self.top_highest_sentiment_with_avgs_for_project(project_id)
-    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).last(5)
+    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).reverse!.first(5)
   end
 
   def self.top_lowest_sentiment_with_avgs_for_project(project_id)
