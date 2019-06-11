@@ -23,7 +23,7 @@ class Entity < ApplicationRecord
   end
 
   def reviews_for_entity
-    {review_date: reviews.pluck(:date), listing_id: reviews.pluck(:listing_id), review: reviews.pluck(:comments)}
+    reviews.select('date', 'listing_id', 'comments')
   end
 
   def sentiment_over_time
@@ -42,20 +42,24 @@ class Entity < ApplicationRecord
     sentiment_scores
   end
 
+  # highest/lowest without averages
+
   def self.top_highest_sentiment_for_project(project_id)
     Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name, x.occurrences] }.first(2)
-  end
-
-  def self.top_highest_sentiment_with_avgs_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).reverse!.map { |x| [x.name] }.first(2)
   end
 
   def self.top_lowest_sentiment_for_project(project_id)
     Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name, x.occurrences] }.first(2)
   end
 
+  # highest/lowest with averages
+
+  def self.top_highest_sentiment_with_avgs_for_project(project_id)
+    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).last(2)
+  end
+
   def self.top_lowest_sentiment_with_avgs_for_project(project_id)
-    Project.find(project_id).entities.sort_by(&:avg_sentiment).map { |x| [x.name] }.first(2)
+    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).first(2)
   end
 end
 
