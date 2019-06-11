@@ -7,14 +7,15 @@
     <%= @firstHighest.name %>
     </span> and <span class="number-highlight number-highlight-positive">
     <%= @secondHighest.name %>
-    </span>
+    </span>.
+    <br>
     <br>
       While those with the lowest average sentiment were
     <span class="number-highlight number-highlight-negative">
     <%= @firstLowest.name %>
     </span> and <span class="number-highlight number-highlight-negative">
     <%= @secondLowest.name %>
-    </span>
+    </span>.
   </p>
   <%= render 'graphs/sentiment_score_average' %>
 </div>
