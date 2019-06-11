@@ -3,13 +3,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: $textu-blue;
+  background-color: $textu-background-blue;
   color: #f4f4f4;
 }
 
 .banner h1 {
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 300;
+}
+
+.banner-all {
+  display: flex;
+  padding-top: 30px;
 }
 
 .banner-img {
@@ -37,7 +42,7 @@
 
   &:hover {
     background: white;
-    color: #647AF5;
+    color: $textu-background-blue;
   }
 }
 
@@ -50,3 +55,8 @@
 .banner-faded {
   opacity: 0.8;
 }
+
+.banner-yeti {
+  transform: scaleX(-1);
+}
+
