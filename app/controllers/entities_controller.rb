@@ -22,11 +22,6 @@ class EntitiesController < ApplicationController
   end
 
   def entities_data
-
-    # @datasets = SentenceEntity.joins(:entity, :sentence).reject{|sentence_entity| sentence_entity.entity.sentences.count < 7}.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.count, y: sentence_entity.entity.avg_sentiment}] } }
-
-    # 1. get all the sentence entities and include entities and sentences via their relations
-
     # Loading the data for the scatter plot chart
     sentence_entities = SentenceEntity.joins(:entity, :sentence).includes(entity: :sentences)
     filtered_entities = sentence_entities.reject{ |sentence_entity| sentence_entity.entity.sentences.size < 7 }
@@ -34,7 +29,6 @@ class EntitiesController < ApplicationController
     filtered_with_duplicates = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
     filtered_without_duplicates = filtered_with_duplicates.uniq { |data| data[:label] }
     @datasets = filtered_without_duplicates
-
     # load data for highest average sentiment score
     entitiesWithHighestSentiment = Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]);
     @firstHighest = entitiesWithHighestSentiment.first
@@ -44,8 +38,6 @@ class EntitiesController < ApplicationController
     entitiesWithLowestSentiment = Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]);
     @firstLowest = entitiesWithLowestSentiment.first
     @secondLowest = entitiesWithLowestSentiment.second
-
-    # render :layout => 'tour'
 
     # 3. map the filtered data into a form that chart.js like
     @datasets = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
