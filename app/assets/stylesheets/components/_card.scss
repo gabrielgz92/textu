@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 32px;
   margin: 0px;
-  margin-top: 80px;
+  margin-top: 16px;
   margin-bottom: 240px;
 }
 
@@ -14,7 +14,7 @@
   height: 240px;
   border-radius: 2px;
   box-shadow: 1px 1px $light-gray;
-  margin-top: 24px;
+  margin-top: 0px;
 }
 
 .project-card-img img{
@@ -32,14 +32,19 @@
   }
 }
 
-.project-card h3{
-  font-size: 24px;
+.project-card h3 {
+  font-size: 20px;
+}
+
+.project-card p {
+  font-size: 12px;
 }
 
 .project-card-function{
   margin-right: 8px;
   margin-top: 24px;
   font-weight: lighter;
+  font-size: 16px;
   color: $project-card-gray;
 }
 
@@ -51,13 +56,14 @@
   width: 320px;
   height: 240px;
   display: flex;
-  border: 1.6px;
-  border-style: dotted;
+  border: 0.3px dashed #163c69;
   justify-content: center;
   align-items: center;
   color: $project-card-gray;
   font-size: 20px;
-  margin-top: 25px;
+  font-weight: lighter;
+  margin-top: 0px;
+  color: #17365b;
 }
 
 a {
@@ -70,5 +76,9 @@ a:hover{
   color: inherit;
 }
 
-.entities-graph-card{
+.project-mascot{
+  height: 200px;
+  width: 200px;
+  margin-top: 80px;
+  margin-right: 24px;
 }
