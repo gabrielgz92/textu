@@ -19,12 +19,25 @@
     <div class="card-category-reccomendations">
       <img class="card-recommendatios-happy-jeti avatar-reccomendations" alt="avatar" src="<%= image_path("happy body.svg") %>" />
       <p>People is really happy when they mention:</p>
+      <div class="mentions">
+        <% Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
+        <span class="number-highlight-positive-mentions">
+          <%= e.first %>
+        </span>
+        <% end %>
+      </div>
     </div>
-
 
     <div class="card-category-reccomendations">
       <img class="card-recommendatios-angry-jeti avatar-reccomendations" alt="avatar" src="<%= image_path("angry body.svg") %>" />
       <p>People is really sad when they mention:</p>
+      <div class="mentions">
+        <% Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
+        <span class="number-highlight-negative-mentions">
+          <%= e.first %>
+        </span>
+        <% end %>
+      </div>
     </div>
 </div>
 
