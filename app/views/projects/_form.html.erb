@@ -1,0 +1,34 @@
+<div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   <h3 id="myModalLabel">Modal header</h3>
+ </div>
+ <div class="modal-body">
+    <%= simple_form_for Project.new do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <%= f.input :project_name %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :description %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.file_field :reviews_csv, as: :file %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+
+
+    <% end %>
+   **here comes whatever you want to show!**
+ </div>
+ <div class="modal-footer">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   <button class="btn btn-primary">Save changes</button>
+ </div>
+
+

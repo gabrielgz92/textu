@@ -1,3 +1,9 @@
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  ;alksdfj;lkadf;alk
+
+ </div>
+
+</div>
 <div class="container">
   <h2 class="projects-title">My Projects</h2>
   <div class="project-cards">
@@ -18,7 +24,7 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to new_project_path do %>
+      <%= link_to new_project_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  do %>
           <div class="add-project-card">
             <i class="far fa-plus-square mr-2"></i>
             Add Project 🤗
