@@ -1,32 +1,16 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 20px;
-}
-
 .navbar {
   background-color: $textu-yeti-blue;
-  margin-left: 0px;
-  position: fixed;
-  width: 100vw;
-  height: 52px;
+  justify-content: space-between;
+  padding: 0 16px;
 }
 
- .sticky-top{
-  z-index: 50;
- }
-
- .navbar a {
-  color: white;
- }
-
-.avatar-center {
-  padding-top: 3px;
+.navbar-nav {
+  align-items: center;
 }
+
+.navbar-brand {
+  color: white !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+
