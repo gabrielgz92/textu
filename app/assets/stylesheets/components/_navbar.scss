@@ -1,28 +1,16 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
 .navbar {
-  background-color: #ececec;
-  margin-left: 0px;
-  position: fixed;
-  width: 100vw;
-  height: 72;
+  background-color: $textu-background-blue;
+  justify-content: space-between;
+  padding: 0 16px;
 }
 
- .sticky-top{
-  z-index: 50;
- }
+.navbar-nav {
+  align-items: center;
+}
 
- .navbar a {
-  color: $textu-purple-dark;
- }
+.navbar-brand {
+  color: white !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+

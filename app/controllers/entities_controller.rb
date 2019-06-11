@@ -13,7 +13,7 @@ class EntitiesController < ApplicationController
 
   def reviews_for_entity
     @reviews = Entity.reviews_for_entity
-    render :layout => 'tour'
+    render layout: 'tour'
   end
 
   def show
@@ -23,9 +23,14 @@ class EntitiesController < ApplicationController
 
   def entities_data
 
+    @datasets = SentenceEntity.joins(:entity, :sentence).reject{|sentence_entity| sentence_entity.entity.sentences.count < 7}.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.count, y: sentence_entity.entity.avg_sentiment}] } }
+    render layout: 'tour'
+    # 1. get all the sentence entities and include entities and sentences via their relations
+
     # Loading the data for the scatter plot chart
     sentence_entities = SentenceEntity.joins(:entity, :sentence).includes(entity: :sentences)
     filtered_entities = sentence_entities.reject{ |sentence_entity| sentence_entity.entity.sentences.size < 7 }
+
     filtered_with_duplicates = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
     filtered_without_duplicates = filtered_with_duplicates.uniq { |data| data[:label] }
     @datasets = filtered_without_duplicates
@@ -41,6 +46,10 @@ class EntitiesController < ApplicationController
     @secondLowest = entitiesWithLowestSentiment.second
 
     render :layout => 'tour'
+
+
+    # 3. map the filtered data into a form that chart.js like
+    @datasets = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
 
   end
 
@@ -82,7 +91,7 @@ class EntitiesController < ApplicationController
     end
   end
 
-   def first_month
+  def first_month
     if @entity
       date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.first[0].to_i
       Date::MONTHNAMES[date]
@@ -96,5 +105,4 @@ class EntitiesController < ApplicationController
     end
   end
 end
-
 

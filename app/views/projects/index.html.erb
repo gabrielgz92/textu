@@ -1,36 +1,81 @@
-<div class="container">
-  <h2 class="projects-title">My Projects</h2>
-  <div class="project-cards">
-    <% if current_user.projects.any? %>
-      <% @projects.each do |project| %>
-        <%= link_to project_reviews_path(project) do %>
-          <div class="project-card">
-            <div class="project-card-img"><img src="https://picsum.photos/320/160" alt=""></div>
-            <div class="project-card-info d-flex justify-content-between">
-              <div class="project-card-content">
-                <h3><%= project.project_name %></h3>
-                <p>created at 14/04/18</p>
-              </div>
-              <div class="project-card-function">
-                <i class="fas fa-ellipsis-v"></i>
-              </div>
-            </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <%= simple_form_for @project do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <div class="form-inputs">
+            <%= f.input :project_name %>
+          </div>
+          <div class="form-inputs">
+            <%= f.input :description %>
+          </div>
+            <%= f.file_field :reviews_csv, as: :file %>
+          <div class="modal-footer">
+            <%= f.button :submit, class: 'btn' %>
           </div>
         <% end %>
-      <% end %>
-      <%= link_to new_project_path do %>
-          <div class="add-project-card">
-            <i class="far fa-plus-square mr-2"></i>
-            Add Project 🤗
-          </div>
-      <% end %>
-    <% else %>
-        <%= link_to new_project_path do %>
-          <div class="add-project-card">
-            <i class="far fa-plus-square mr-2"></i>
-            add your first project 😊
-          </div>
-        <% end %>
-    <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="layout-tour">
+  <div class="layout-tour-navigator">
+    <img src="<%= image_path("yeti.png") %>" class="project-mascot" alt="">
+  </div>
+  <div class="layout-tour-project-content">
+    <h1 class="layout-tour-title">My Projects</h1>
+    <div class="project-cards">
+      <% if current_user.projects.any? %>
+      <% counter = 0 %>
+        <% @projects.each do |project| %>
+          <% counter += 1 %>
+          <%= link_to project_reviews_path(project) do %>
+          <div class="project-card">
+              <div class="project-card-img"><img src="https://picsum.photos/320/160" alt=""></div>
+                <div class="project-card-info d-flex justify-content-between">
+                    <div class="project-card-content">
+                      <% if project.project_name %>
+                        <h3><%= project.project_name %></h3>
+                      <% else %>
+                        <h3>Project <%= counter %></h3>
+                      <% end %>
+                      <p>created at <%= project.created_at.strftime("%F") %></p>
+                    </div>
+                  <div class="project-card-function">
+                      <i class="fas fa-ellipsis-v"></i>
+                  </div>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
+        <div class="add-project-card">
+            <button type="button" class="add-project-btn" data-toggle="modal" data-target="#exampleModal">
+            <i class="far fa-plus-square mr-2"></i>
+              Add Project 🤗
+            </button>
+        </div>
+      <% else %>
+        <%= link_to new_project_path do %>
+          <div class="add-project-card">
+          <i class="far fa-plus-square mr-2"></i>
+                    add your first project 😊
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
