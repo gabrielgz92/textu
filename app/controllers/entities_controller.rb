@@ -23,8 +23,8 @@ class EntitiesController < ApplicationController
 
   def entities_data
 
-    @datasets = SentenceEntity.joins(:entity, :sentence).reject{|sentence_entity| sentence_entity.entity.sentences.count < 7}.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.count, y: sentence_entity.entity.avg_sentiment}] } }
-    render layout: 'tour'
+    # @datasets = SentenceEntity.joins(:entity, :sentence).reject{|sentence_entity| sentence_entity.entity.sentences.count < 7}.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.count, y: sentence_entity.entity.avg_sentiment}] } }
+
     # 1. get all the sentence entities and include entities and sentences via their relations
 
     # Loading the data for the scatter plot chart
@@ -45,12 +45,12 @@ class EntitiesController < ApplicationController
     @firstLowest = entitiesWithLowestSentiment.first
     @secondLowest = entitiesWithLowestSentiment.second
 
-    render :layout => 'tour'
+    # render :layout => 'tour'
 
 
     # 3. map the filtered data into a form that chart.js like
     @datasets = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
-
+    render layout: 'tour'
   end
 
   private
