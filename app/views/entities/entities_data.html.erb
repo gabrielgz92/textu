@@ -1,18 +1,15 @@
 <% content_for :title, "Common words" %>
 
 <div class="layout-tour-intro">
-  <p>Let's look into the reviews in a bit more detail... </p>
-  <p> The words mentioned in reviews with the highest average sentiment score are
+  <p>Let's do an overview! </p>
+  <p> The entities mentioned in reviews with the highest average sentiment score are
     <span class="number-highlight number-highlight-positive">
     <%= @firstHighest.name %>
     </span> and <span class="number-highlight number-highlight-positive">
-    <%= Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]).second[0]%>
-    </span>, while those with the lowest average sentiment score were
     <%= @secondHighest.name %>
     </span>
     <br>
       While those with the lowest average sentiment were
-
     <span class="number-highlight number-highlight-negative">
     <%= @firstLowest.name %>
     </span> and <span class="number-highlight number-highlight-negative">
@@ -21,4 +18,3 @@
   </p>
   <%= render 'graphs/sentiment_score_average' %>
 </div>
-
