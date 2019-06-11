@@ -29,7 +29,7 @@
       <div class="mentions">
         <% Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
         <span class="number-highlight-positive-mentions">
-          <%= e.first %>
+          <%= e.name %>
         </span>
         <% end %>
       </div>
@@ -41,7 +41,7 @@
       <div class="mentions">
         <% Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
         <span class="number-highlight-negative-mentions">
-          <%= e.first %>
+          <%= e.name %>
         </span>
         <% end %>
       </div>

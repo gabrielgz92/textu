@@ -56,10 +56,10 @@ class Entity < ApplicationRecord
   # highest/lowest with averages
 
   def self.top_highest_sentiment_with_avgs_for_project(project_id)
-    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).last(2)
+    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).last(5)
   end
 
   def self.top_lowest_sentiment_with_avgs_for_project(project_id)
-    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).first(2)
+    Project.includes(entities: [:sentence_entities, :sentences]).find(project_id).entities.sort_by(&:avg_sentiment).first(5)
   end
 end
