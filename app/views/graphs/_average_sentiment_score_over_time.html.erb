@@ -1,7 +1,7 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 <% if @entity %>
-  <%= line_chart @entity.sentiment_over_time, colors: ["#1e3c68"] %>
+  <%= line_chart @entity.sentiment_over_time, xtitle: 'Month', ytitle: 'Score', colors: ["#1e3c68"], height: "380px" %>
 <% else %>
 <img src="<%= image_path("confused.svg") %>" alt="" class="no-data-yeti">
 <br>
