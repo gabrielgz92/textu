@@ -1,1 +1,47 @@
 <% content_for :title, "Conclusion" %>
+
+<div class="layout-tour-intro">
+
+  <p> Hope you enjoyed our data tour!</p>
+  <h4> From all the <strong><%= Review.current_project_reviews(params[:project_id]) %> reviews</strong> submitted, most of them are
+    <%result = Review.total_reviews_avg_sentiment(params[:project_id]) %>
+    <% if result > 0 %>
+    <span class="number-highlight-bigger number-highlight-bigger-positive"><%= "positive" %></span>
+    <% else %>
+    <span class="number-highlight-bigger number-highlight-bigger-negative"><%= "negative" %></span>
+    <% end %>!
+  </h4>
+  <p>Average sentiment score was <%= result %> ;)</p>
+  <br>
+  <p>Here are some key aspects to work on:</p>
+  <br>
+  <div class="recommendations-cards">
+    <div class="card-category-reccomendations">
+      <img class="card-recommendatios-happy-jeti avatar-reccomendations" alt="avatar" src="<%= image_path("happy body.svg") %>" />
+      <p>People is really happy when they mention:</p>
+      <div class="mentions">
+        <% Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
+        <span class="number-highlight-positive-mentions">
+          <%= e.first %>
+        </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card-category-reccomendations">
+      <img class="card-recommendatios-angry-jeti avatar-reccomendations" alt="avatar" src="<%= image_path("angry body.svg") %>" />
+      <p>People is really sad when they mention:</p>
+      <div class="mentions">
+        <% Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]).each do |e| %>
+        <span class="number-highlight-negative-mentions">
+          <%= e.first %>
+        </span>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+
+
+</div>
