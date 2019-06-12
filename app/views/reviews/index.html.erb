@@ -1,47 +1,44 @@
 <% content_for :title, "Reviews" %>
-
-
-<div class="enties">
-  <% @popular_entities_in_project.each do  |entity| %>
-  <%= link_to "#{entity.name} (#{entity.occurrences})", project_reviews_path(@project, :entity_id => entity.id), :class => 'number-highlight number-highlight-positive'  %>
-  <% end %>
-  <button type="button" class="btn btn-lights" data-toggle="modal" data-target="#all-entities-modal">
-    More words
-  </button>
-</div>
-<div class="modal" tabindex="-1" role="dialog" id="all-entities-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Filter by entity</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <% @all_entities_in_project.each do  |entity| %>
-        <%= link_to "#{entity.name} (#{entity.occurrences})", project_reviews_path(@project, :entity_id => entity.id)  %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Listing</th>
-      <th scope="col">Review</th>
-    </tr>
-  </thead>
-  <tbody>
-     <% @reviews.each do |review| %>
-    <tr>
-      <td> <%= review.date %></td>
-      <td> <%= review.listing_id %> </td>
-      <td> <%= review.comments %></td>
-    </tr>
+<div class="review-index">
+  <div class="entities-list">
+      <%= form_tag project_entities_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control sticky-search",
+        placeholder: "type keyword"
+      %>
     <% end %>
-  </tbody>
-</table>
+    <ul class="list-group list-group-flush entities-list-item">
+      <% @all_entities_in_project.each do  |entity| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%= entity.name %>
+            <% result =  entity.avg_sentiment %>
+            <% if result > 1 %>
+              <h6><span class="badge badge-success badge-pill black-text"><%= entity.occurrences %></span></h6>
+            <% elsif result < 1 && result > 0 %>
+              <h6><span class="badge badge-primary badge-pill"><%= entity.occurrences %></span></h6>
+            <% else %>
+              <h6><span class="badge badge-danger badge-pill"><%= entity.occurrences %></span></h6>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Keyword</th>
+        <th scope="col">Review</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @reviews.each do |review| %>
+      <tr>
+        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br> <%= review.date %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
