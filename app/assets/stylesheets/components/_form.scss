@@ -2,7 +2,32 @@
   color: $textu-dark-blue;
   .btn {
     background-color: #90bdd0;
-    color: $textu-dark-blue;
+    color: white;
   }
 }
 
+
+
+.form-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 160px;
+}
+
+.sign-in-yeti {
+  margin-right: 40px;
+}
+
+.form-container {
+  .btn {
+    height: 40px;
+    color: white;
+    background-color: $textu-yeti-blue;
+  }
+
+  .btn:hover {
+    transition: 1s;
+    background-color: $textu-dark-blue;
+  }
+}
