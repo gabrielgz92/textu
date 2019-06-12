@@ -8,7 +8,11 @@ class EntitiesController < ApplicationController
     @last_word_score = last_word_score
     @first_month = first_month
     @last_month = last_month
-    render layout: 'tour'
+
+    respond_to do |format|
+      format.html { render layout: 'tour' }
+      format.json { render json: @entity.sentiment_over_time.sort.to_h }
+    end
   end
 
   def reviews_for_entity

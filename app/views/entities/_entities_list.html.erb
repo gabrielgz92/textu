@@ -6,7 +6,7 @@
       placeholder: "type keyword"
     %>
   <% end %>
-  <ul class="list-group list-group-flush entities-list-item">
+  <ul id="entities-list-data" class="list-group list-group-flush entities-list-item">
     <% @entities.each do |entity, occurrence| %>
       <%= link_to project_entities_path(params[:project_id], entity: entity ) do %>
         <li class="list-group-item flex-entity justify-content-between align-items-center js-entity-item" data-entity="<%= entity%>">
