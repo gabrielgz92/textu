@@ -1,7 +1,7 @@
 <% content_for :title, "Reviews" %>
 <div class="review-index">
-  <div class="entities-list">
-      <%= form_tag project_entities_path, method: :get do %>
+  <div class="entities-list" id="entities-list-review">
+      <%= form_tag project_reviews_path(params[:project_id]), method: :get do %>
       <%= text_field_tag :query,
         params[:query],
         class: "form-control sticky-search",
@@ -10,6 +10,7 @@
     <% end %>
     <ul class="list-group list-group-flush entities-list-item">
       <% @all_entities_in_project.each do  |entity| %>
+      <%= link_to project_reviews_path(@project, :entity_id => entity.id) do %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <%= entity.name %>
             <% result =  entity.avg_sentiment %>
@@ -21,6 +22,7 @@
               <h6><span class="badge badge-danger badge-pill"><%= entity.occurrences %></span></h6>
             <% end %>
           </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
@@ -29,13 +31,12 @@
     <thead>
       <tr>
         <th scope="col">Keyword</th>
-        <th scope="col">Review</th>
       </tr>
     </thead>
     <tbody>
        <% @reviews.each do |review| %>
       <tr>
-        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br> <%= review.date %> </td>
+        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br> <br>  <%= review.date %> </td>
       </tr>
       <% end %>
     </tbody>
