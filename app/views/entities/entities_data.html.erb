@@ -4,18 +4,18 @@
   <p>Let's do an overview! </p>
   <p> The entities mentioned in reviews with the highest average sentiment score are
     <span class="number-highlight number-highlight-positive">
-    <%= Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]).first[0]%>
+    <%= @firstHighest.name %>
     </span> and <span class="number-highlight number-highlight-positive">
-    <%= Entity.top_highest_sentiment_with_avgs_for_project(params[:project_id]).second[0]%>
+    <%= @secondHighest.name %>
     </span>.
+    <br>
     <br>
       While those with the lowest average sentiment were
     <span class="number-highlight number-highlight-negative">
-    <%= Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]).first[0]%>
+    <%= @firstLowest.name %>
     </span> and <span class="number-highlight number-highlight-negative">
-    <%= Entity.top_lowest_sentiment_with_avgs_for_project(params[:project_id]).second[0]%>
+    <%= @secondLowest.name %>
     </span>.
   </p>
-
-</div>
   <%= render 'graphs/sentiment_score_average' %>
+</div>

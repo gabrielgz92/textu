@@ -1,0 +1,8 @@
+# config/meta.yml
+
+meta_product_name: "TEXTU"
+meta_title: "TEXTU - Enables simple sentiment analysis of open-ended text."
+meta_description: "Upload your customers reviews and receive actionable insights."
+meta_image: "yeti.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
+
