@@ -11,6 +11,7 @@
       <% end %>
       <ul class="list-group list-group-flush entities-list-item">
         <% @all_entities_in_project.each do  |entity| %>
+        <%= link_to project_reviews_path(@project, :entity_id => entity.id) do %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <%= entity.name %>
               <% result =  entity.avg_sentiment %>
@@ -23,21 +24,20 @@
               <% end %>
             </li>
         <% end %>
+        <% end %>
       </ul>
     </div>
   </div>
 
-  <table class="table">
+  <table class="table-borderless">
     <thead>
       <tr>
-        <th scope="col">Keyword</th>
-        <th scope="col">Review</th>
       </tr>
     </thead>
     <tbody>
        <% @reviews.each do |review| %>
       <tr>
-        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br> <%= review.date %> </td>
+        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br> <i style="color:gray">- <%= review.date %> </td></i>
       </tr>
       <% end %>
     </tbody>
