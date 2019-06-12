@@ -6,7 +6,6 @@
     <%= javascript_include_tag 'application' %>
     <%= yield %>
     <%= javascript_pack_tag 'application' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/messages' %>
   </body>
 </html>
