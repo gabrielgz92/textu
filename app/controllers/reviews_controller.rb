@@ -8,10 +8,10 @@ class ReviewsController < ApplicationController
 
     @all_entities_in_project = project_entities
     # @all_entities_in_project = @project.entities
-    @popular_entities_in_project = @project.entities.limit(10)
+   # @popular_entities_in_project = @project.entities.limit(10)
 
-    if params[:entity_id]
-      @entity = project_entities.find(params[:entity_id])
+    if params[:query]
+      @entity = project_entities.search_by_entity_name(params[:query])
       @reviews = @entity.reviews
     else
       @reviews = project_reviews
