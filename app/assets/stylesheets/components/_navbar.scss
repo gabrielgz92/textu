@@ -6,11 +6,21 @@
 
 .navbar-nav {
   align-items: center;
+  text-shadow: 0px 0px 60px $textu-dark-blue;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: $textu-dark-blue !important;
 }
 
 .navbar-brand {
   color: white !important;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
+  text-shadow: 0px 0px 60px $textu-dark-blue;
 }
 

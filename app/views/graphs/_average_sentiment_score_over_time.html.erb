@@ -1,7 +1,8 @@
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+<%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" %>
+<%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" %>
 
 <% if @entity %>
-  <%= line_chart @entity.sentiment_over_time, xtitle: 'Month', ytitle: 'Score', colors: ["#1e3c68"], height: "380px", library: {animation: { easing: 'easeOutQuad' }} %>
+  <%= line_chart @entity.sentiment_over_time, adapter: 'chartjs', library: { animation: { easing: 'easeOutSine' }}, xtitle: 'Month', ytitle: 'Sentiment score', colors: ["#1e3c68"], height: "380px", code: true %>
 <% else %>
 <img src="<%= image_path("confused.svg") %>" alt="" class="no-data-yeti">
 <br>
