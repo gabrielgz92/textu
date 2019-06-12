@@ -8,6 +8,7 @@
     "chartkick": "^3.1.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
+    "sticky-js": "^1.2.0",
     "typed.js": "^2.0.10"
   },
   "devDependencies": {

@@ -27,7 +27,7 @@
               callbacks: {
                  label: function(tooltipItem, data) {
                     var label = data.datasets[tooltipItem.datasetIndex].label;
-                    return label + ' (occurences: ' + tooltipItem.xLabel + ', average sentiment: ' + tooltipItem.yLabel + ')';
+                    return label + ' (occurences: ' + tooltipItem.xLabel + ', average sentiment: ' + parseFloat(tooltipItem.yLabel, 10).toFixed(2) + ')';
                  }
               }
             },

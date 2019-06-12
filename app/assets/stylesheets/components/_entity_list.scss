@@ -1,6 +1,19 @@
 .entities-list {
-
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
 }
+
+.entities-list--full-height {
+  height: 100vh;
+}
+
+.entities-list-wrapper {
+  min-width: 196px;
+  margin-top: 100px;
+}
+
 
 .entities-list-item {
   font-size: 14px;
@@ -8,7 +21,7 @@
   margin-top: 4px;
   margin-bottom: 8px;
   margin-right: 0;
-  height: 360px;
+
   overflow-y: auto;
   margin-left: 8px;
 
