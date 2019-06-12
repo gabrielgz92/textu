@@ -9,7 +9,6 @@ class ReviewsController < ApplicationController
     if params[:entity_id]
       @entity = Entity.find(params[:entity_id])
       @reviews = @entity.reviews
-
     else
       @reviews = @project.reviews
     end
@@ -29,9 +28,9 @@ class ReviewsController < ApplicationController
     render json: @reviews.group_by_month(:date, format: "%m %Y").count
   end
 
-  def sentiment_score_averages
-    render json: SentenceEntity.joins(:entity, :sentence).map { |x| [x.entity.sentences.count, x.entity.avg_sentiment] }
-  end
+  # def sentiment_score_averages
+  #   render json: SentenceEntity.joins(:entity, :sentence).includes(entity: :sentences).map { |x| [x.entity.sentences.size, x.entity.avg_sentiment] }
+  # end
 
   def conclusion
     render layout: 'tour'

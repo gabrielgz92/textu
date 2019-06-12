@@ -1,3 +1,6 @@
+<% content_for :title, "My projects" %>
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -47,7 +50,8 @@
           <% counter += 1 %>
           <%= link_to project_reviews_path(project) do %>
           <div class="project-card">
-              <div class="project-card-img"><img src="https://cdn.dribbble.com/users/998341/screenshots/4960787/moving_mountain.gif" alt=""></div>
+              <div class="project-card-img">
+                <img src="<%= image_path("moving_mountain.gif") %>" alt="" class=""></div>
                 <div class="project-card-info d-flex justify-content-between">
                     <div class="project-card-content">
                       <% if project.project_name %>

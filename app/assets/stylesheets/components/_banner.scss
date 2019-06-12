@@ -8,8 +8,8 @@
 }
 
 .banner h1 {
-  font-family: 'Helvetica Neue', sans-serif;
   font-weight: 300;
+  text-shadow: 0px 0px 40px $textu-dark-blue;
 }
 
 .banner-all {
@@ -58,5 +58,9 @@
 
 .banner-yeti {
   transform: scaleX(-1);
+}
+
+.banner-text {
+  text-shadow: 0px 0px 40px $textu-dark-blue;
 }
 
