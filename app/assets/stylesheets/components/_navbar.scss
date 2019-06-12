@@ -8,9 +8,17 @@
   align-items: center;
 }
 
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: $textu-dark-blue !important;
+}
+
 .navbar-brand {
   color: white !important;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
