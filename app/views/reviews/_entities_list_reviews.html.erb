@@ -1,0 +1,45 @@
+<div class="entities-list-wrapper">
+  <div class="entities-list entities-list--full-height js-entities-list js-sticky " id="entities-list-review">
+    <%= form_tag project_reviews_path(params[:project_id]), method: :get, class: 'entities-list-search-form' do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control entities-list-search-input sticky-search js-search-input",
+        autocomplete:'off',
+        placeholder: "Type keyword..."
+      %>
+  <% end %>
+  <ul class="list-group list-group-flush entities-list-item">
+    <% @project.entities.uniq { |entity| entity.name }.sort_by{|entity| entity.occurrences}.reverse!.each do |entity| %>
+      <%= link_to project_reviews_path(@project, :keyword => entity.name) do %>
+        <li class="list-group-item flex-entity justify-content-between align-items-center js-entity-item" data-entity="<%= entity.name %>">
+          <%= entity.name %>
+          <% result =  entity.avg_sentiment %>
+          <% if result > 1 %>
+            <h6><span class="badge badge-success badge-pill text-white"><%= entity.occurrences %></span></h6>
+          <% elsif result < 1 && result > 0 %>
+            <h6><span class="badge gray-badge text-white badge-pill"><%= entity.occurrences %></span></h6>
+          <% else %>
+            <h6><span class="badge badge-danger badge-pill"><%= entity.occurrences %></span></h6>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+    <ul class="list-group list-group-flush entities-list-item">
+      <% @project.entities.uniq { |entity| entity.name }.each do |entity| %>
+        <%= link_to project_reviews_path(@project, :keyword => entity.name) do %>
+          <li class="list-group-item flex-entity justify-content-between align-items-center js-entity-item" data-entity="<%= entity.name %>">
+            <%= entity.name %>
+            <% result =  entity.avg_sentiment %>
+            <% if result > 1 %>
+              <h6><span class="badge badge-success badge-pill black-text"><%= entity.occurrences %></span></h6>
+            <% elsif result < 1 && result > 0 %>
+              <h6><span class="badge badge-primary badge-pill"><%= entity.occurrences %></span></h6>
+            <% else %>
+              <h6><span class="badge badge-danger badge-pill"><%= entity.occurrences %></span></h6>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
