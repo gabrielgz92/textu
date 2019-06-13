@@ -1,17 +1,18 @@
 <% content_for :title, "Reviews" %>
+
 <div class="review-index">
-  <div class="entities-list" id="entities-list-review">
-      <%= form_tag project_reviews_path(params[:project_id]), method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control sticky-search",
-        placeholder: "type keyword"
-      %>
+  <div class="entities-list js-entities-list" id="entities-list-review">
+    <%= form_tag project_reviews_path(params[:project_id]), method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control sticky-search js-search-input",
+      placeholder: "type keyword"
+    %>
     <% end %>
     <ul class="list-group list-group-flush entities-list-item">
-      <% @all_entities_in_project.each do  |entity| %>
-      <%= link_to project_reviews_path(@project, :entity_id => entity.id) do %>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
+      <% @project.entities.uniq { |entity| entity.name }.each do |entity| %>
+        <%= link_to project_reviews_path(@project, :keyword => entity.name) do %>
+          <li class="list-group-item flex-entity justify-content-between align-items-center js-entity-item" data-entity="<%= entity.name %>">
             <%= entity.name %>
             <% result =  entity.avg_sentiment %>
             <% if result > 1 %>
@@ -42,5 +43,3 @@
     </tbody>
   </table>
 </div>
-
-
