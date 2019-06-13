@@ -55,10 +55,11 @@ class EntitiesController < ApplicationController
   end
 
   def set_entities
-    project_entities_object = Project.includes(entities: [:sentence_entities, :sentences])
-    project_entities = project_entities_object.map { |x| x.entities }.first
-
+    project_entities_object = Project.includes(entities: [:sentence_entities, :sentences]).find(params[:project_id])
+    project_entities = project_entities_object.entities.group(:name).order('count_id desc').count('id').reject!{ |k, v| v == 1 }
     @entities = project_entities
+    # returns a hash of entity list in descending order
+
   end
 
   def entities_params
@@ -80,8 +81,9 @@ class EntitiesController < ApplicationController
   def last_word_score
     return false if @entity.nil?
 
-    last_word = @entity.reviews.map{|x| [x.date, x.id] }.second
-    Review.find(last_word[1]).sentences.first.sentiment_score
+      last_word = @entity.reviews.map { |x| [x.date, x.id] }.sort.last
+      sentences = @project.reviews.find(last_word[1]).sentences
+      Entity.average_sentence_score(sentences, @entity)
   end
 
   def first_month

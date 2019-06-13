@@ -1,20 +1,14 @@
 class ReviewsController < ApplicationController
-  before_action :set_project, only: %i[index create reviews_by_month_of_year reviews_by_month_graph]
+  before_action :set_project, only: %i[create reviews_by_month_of_year reviews_by_month_graph]
 
   def index
-    project_entities_object = Project.includes(entities: [:sentence_entities, :sentences])
-    project_entities = project_entities_object.map { |x| x.entities }.first
-    project_reviews = project_entities_object.map { |x| x.reviews }.first
+    @project = Project.includes(:reviews, entities: [:sentence_entities, :sentences]).find(params[:project_id])
 
-    @all_entities_in_project = project_entities
-    # @all_entities_in_project = @project.entities
-   # @popular_entities_in_project = @project.entities.limit(10)
-
-    if params[:query]
-      @entity = project_entities.search_by_entity_name(params[:query])
-      @reviews = @entity.reviews
+    if params[:keyword]
+      entity = @project.entities.detect { |entity| entity[:name] === params[:keyword] }
+      @reviews = entity.reviews
     else
-      @reviews = project_reviews
+      @reviews = @project.reviews
     end
 
     render :layout => 'tour'
