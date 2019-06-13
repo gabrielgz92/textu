@@ -34,12 +34,15 @@ class Entity < ApplicationRecord
       # compute sentiment score from occurences of entity within sentences
       sentences = review.sentences
       # pluck out sentences with the entity inside them
-      occurences = sentences.select { |sentence| sentence.content.include? self.name }
-      average_sentiment = occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count
-      sentiment_scores[review.date] = average_sentiment
+      sentiment_scores[review.date] = Entity.average_sentence_score(sentences, self)
       # sentiment_scores << [review.date, average_sentiment]
     end
     sentiment_scores
+  end
+
+  def self.average_sentence_score(sentences, word)
+    occurences = sentences.select { |sentence| sentence.content.include? word.name }
+    occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count
   end
 
   # highest/lowest with averages

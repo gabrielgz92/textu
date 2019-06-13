@@ -5,25 +5,35 @@
   <div class="layout-tour-intro">
     <p>Over time, the score for the keyword <span class="entity-name-js">"<%= @entity.name.upcase %>"</span> has changed from
       <% if @first_word_score > 0 %>
-        <span class="number-highlight number-highlight-positive">
-          <%= @first_word_score %></span>
+        <span id="first-score">
+          <span class="number-highlight number-highlight-positive">
+            <%= @first_word_score %></span>
+        </span>
       <% else %>
-        <span class="number-highlight number-highlight-negative">
-          <%= @first_word_score %></span>
+        <span id="first-score">
+          <span class="number-highlight number-highlight-negative">
+            <%= @first_word_score %></span>
+        </span>
       <% end %>
       in <%= @first_month %> to
        <% if @last_word_score > 0 %>
-        <span class="number-highlight number-highlight-positive">
-          <%= @last_word_score %></span>
+       <span id="last-score">
+          <span class="number-highlight number-highlight-positive">
+            <%= @last_word_score %></span>
+        </span>
       <% else %>
-        <span class="number-highlight number-highlight-negative">
-          <%= @last_word_score %></span>
+        <span id="last-score">
+          <span class="number-highlight number-highlight-negative">
+            <%= @last_word_score %></span>
+        </span>
       <% end %>
       in <%= @last_month %>.
     <span class="entity-name-js">"<%= @entity.name.upcase %>"</span> was mentioned <%= @entity.occurrences %> times in this period! </p>
     <p>TESTING
       <span id="first-score"></span>
       <span id="last-score"></span>
+      <span id="first-month"></span>
+      <span id="last-month"></span>
     </p>
   </div>
 <% end %>
@@ -73,7 +83,7 @@ document.getElementById("entities-list-data").addEventListener("click", function
         classNameFirst += ' number-highlight-negative';
       };
 
-      document.getElementById("first-score").innerHTML = `<span class="${classNameFirst}">${chart.data.datasets[0].data[0]}</span>`;
+      document.getElementById("first-score").innerHTML = `<span class="${classNameFirst}">${chart.data.datasets[0].data[0].toFixed(2)}</span>`;
 
       // Setting last score
       let lastScore = chart.data.datasets[0].data[chart.data.datasets[0].data.length - 1];
@@ -86,6 +96,14 @@ document.getElementById("entities-list-data").addEventListener("click", function
       };
 
       document.getElementById("last-score").innerHTML = `<span class="${classNameLast}">${lastScore.toFixed(2)}</span>`;
+
+      //Setting first month
+      let firstMonth = new Date(chart.data.labels[0]);
+      document.getElementById("first-month").innerText = `${firstMonth}`;
+
+      //Setting last month
+      let lastMonth = new Date(chart.data.labels[chart.data.labels.length - 1]);
+      document.getElementById("last-month").innerText = `${lastMonth}`;
 
       // Setting entity name
       document.querySelectorAll(".entity-name-js").forEach((e) => {
