@@ -4,8 +4,9 @@
 }
 
 .graph-container {
-  margin-left: 0px;
-  width: 100%;
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 675px; // Fixes issue where graph starts resizing its width.
 }
 
 .graph-container-card {
