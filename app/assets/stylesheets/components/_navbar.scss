@@ -9,6 +9,9 @@
   align-items: center;
   text-shadow: 0px 0px 60px $textu-dark-blue;
 }
+.navbar-nav {
+  flex-direction: row;
+}
 
 .nav-link {
   color: white !important;

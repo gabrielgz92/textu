@@ -32,11 +32,10 @@
   </div>
 </div>
 
-<div class="layout-tour">
+<div class="layout-tour layout-tour--without-speech-arrow">
   <div class="layout-tour-navigator">
     <img src="<%= image_path("yeti.png") %>" class="project-mascot" alt="">
     <div class="welcome-entry">
-      <i class="fas fa-caret-up"></i>
       Welcome to Textu, I'm Yeti, your tourguide, let's upload our first project!🏔💪
       <span class = "close-welcome"><i class="fas fa-times"></i></span>
     </div>
@@ -59,7 +58,7 @@
                       <% else %>
                         <h3>Project <%= counter %></h3>
                       <% end %>
-                      <p>created at <%= project.created_at.strftime("%F") %></p>
+                      <p>Created <%= project.created_at.strftime("%b %d, %Y") %></p>
                     </div>
                   <div class="project-card-function">
                       <i class="fas fa-ellipsis-v"></i>
