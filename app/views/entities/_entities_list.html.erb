@@ -13,11 +13,11 @@
           <%= entity %>
           <% result =  Entity.find_by(name: entity).avg_sentiment %>
           <% if result > 1 %>
-            <h6><span class="badge badge-success badge-pill black-text"><%= occurrence %></span></h6>
+            <h6><span class="badge badge-success badge-pill js-badge text-white"><%= occurrence %></span></h6>
           <% elsif result < 1 && result > 0 %>
-            <h6><span class="badge badge-primary badge-pill"><%= occurrence %></span></h6>
+            <h6><span class="badge badge-primary badge-pill js-badge"><%= occurrence %></span></h6>
           <% else %>
-            <h6><span class="badge badge-danger badge-pill"><%= occurrence %></span></h6>
+            <h6><span class="badge badge-danger badge-pill js-badge"><%= occurrence %></span></h6>
           <% end %>
         </li>
       <% end %>

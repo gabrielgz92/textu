@@ -42,7 +42,7 @@ class Entity < ApplicationRecord
 
   def self.average_sentence_score(sentences, word)
     occurences = sentences.select { |sentence| sentence.content.include? word.name }
-    occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count
+    (occurences.pluck(:sentiment_score).reduce(&:+) / occurences.count).round(2)
   end
 
   # highest/lowest with averages
