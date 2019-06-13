@@ -16,9 +16,9 @@
             <%= entity.name %>
             <% result =  entity.avg_sentiment %>
             <% if result > 1 %>
-              <h6><span class="badge badge-success badge-pill black-text"><%= entity.occurrences %></span></h6>
+              <h6><span class="badge badge-success badge-pill text-white"><%= entity.occurrences %></span></h6>
             <% elsif result < 1 && result > 0 %>
-              <h6><span class="badge badge-primary badge-pill"><%= entity.occurrences %></span></h6>
+              <h6><span class="badge gray-badge text-white badge-pill"><%= entity.occurrences %></span></h6>
             <% else %>
               <h6><span class="badge badge-danger badge-pill"><%= entity.occurrences %></span></h6>
             <% end %>
