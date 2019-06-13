@@ -105,5 +105,9 @@ a:hover{
 .close-welcome {
   position: relative;
   top: 48px;
-  left: 336px;
+  left: 296px;
+}
+
+.close-welcome:hover{
+  color: $textu-dark-blue;
 }

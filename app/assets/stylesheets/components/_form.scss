@@ -1,0 +1,53 @@
+.modal-content {
+  color: $textu-dark-blue;
+  .btn {
+    background-color: #90bdd0;
+    color: white;
+  }
+}
+
+
+
+.form-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 160px;
+}
+
+.sign-in-yeti {
+  margin-right: 40px;
+}
+
+.form-container {
+  .btn {
+    height: 40px;
+    color: white;
+    background-color: $textu-yeti-blue;
+  }
+
+  .btn:hover {
+    transition: 1s;
+    background-color: $textu-dark-blue;
+  }
+}
+
+.login-bubble {
+  height: 80px;
+  background-color: white;
+  width: 300px;
+  border-radius: 64px;
+  padding: 32px;
+  margin-right: 32px;
+  margin-bottom: 148px;
+  position: relative;
+}
+
+// .triangle{
+//   position: fixed;
+//   transform: rotate(24deg);
+//   left: 333px;
+//   top: 270px;
+//   color: white;
+//   font-size: 60px;
+// }
