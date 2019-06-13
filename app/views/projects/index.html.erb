@@ -74,12 +74,12 @@
             </button>
         </div>
       <% else %>
-        <%= link_to new_project_path do %>
           <div class="add-project-card">
-          <i class="far fa-plus-square mr-2"></i>
-                    add your first project 😊
+            <button type="button" class="add-project-btn" data-toggle="modal" data-target="#exampleModal">
+            <i class="far fa-plus-square mr-2"></i>
+              Add Your First Project 🤗
+            </button>
         </div>
-        <% end %>
       <% end %>
     </div>
   </div>
