@@ -1,5 +1,5 @@
-<div class="entities-list-wrapper">
-  <div class="entities-list entities-list--full-height js-entities-list js-sticky " id="entities-list-review">
+
+  <div class="entities-list entities-list--full-height js-entities-list " id="entities-list-review">
     <%= form_tag project_entities_path, method: :get, autocomplete:'off', class: 'entities-list-search-form' do %>
       <%= text_field_tag :query,
         params[:query],
@@ -8,7 +8,7 @@
         placeholder: "Type keyword..."
       %>
     <% end %>
-    <ul class="list-group list-group-flush entities-list-item">
+    <ul id = "entities-list-data"class="list-group list-group-flush entities-list-item">
       <% @entities.each do |entity, occurrence| %>
         <%= link_to project_entities_path(params[:project_id], entity: entity) do %>
           <li class="list-group-item flex-entity justify-content-between align-items-center js-entity-item"data-entity="<%= entity%>">
@@ -26,4 +26,4 @@
       <% end %>
     </ul>
   </div>
-</div>
+
