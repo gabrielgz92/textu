@@ -51,9 +51,7 @@ class EntitiesController < ApplicationController
   end
 
   def set_entities
-    project_entities_object = Project.includes(entities: [:sentence_entities, :sentences]).find(params[:project_id])
-    project_entities = project_entities_object.entities.group(:name).order('count_id desc').count('id').reject!{ |k, v| v == 1 }
-    @entities = project_entities
+    @entities = @project.entities.uniq(&:name).reject { |i| i.occurrences == 1 }.sort_by(&:occurrences).reverse!
     # returns a hash of entity list in descending order
   end
 
