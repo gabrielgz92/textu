@@ -6,6 +6,7 @@
   width: 1000px;
 }
 
+
 .review-body, .review-header{
   display: flex;
   justify-content: space-evenly;
@@ -14,3 +15,6 @@
   display: flex;
  }
 
+.table-borderless {
+  margin: 24px;
+}
