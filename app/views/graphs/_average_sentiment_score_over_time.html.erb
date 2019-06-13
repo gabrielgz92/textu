@@ -16,8 +16,10 @@
 
 
 <% else %>
-<img src="<%= image_path("confused.svg") %>" alt="" class="no-data-yeti">
-<br>
-<br>
-<h4 class="no-data-yeti-text">Hmmm... No keyword selected. Select a keyword from the list for me to analyse!</h4>
+<div class="no-data-yeti-box">
+  <img src="<%= image_path("confused.svg") %>" alt="" class="no-data-yeti">
+  <br>
+  <br>
+  <h4 class="no-data-yeti-text">Hmmm... No keyword selected. Select a keyword from the list for me to analyse!</h4>
+</div>
 <% end %>
