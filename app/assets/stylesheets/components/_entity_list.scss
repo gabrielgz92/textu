@@ -42,3 +42,30 @@
 #entities-list-review {
   margin-top: 8px;
 }
+
+.entities-list-search-input {
+  border: 0;
+  padding-left: 25px;
+
+  &:focus,
+  &:active {
+    outline: none;
+    border-color: none;
+    box-shadow: none;
+  }
+}
+
+.entities-list-search-form {
+  position: relative;
+
+  &:before {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    font-size: 12px;
+    color: #999;
+  }
+}

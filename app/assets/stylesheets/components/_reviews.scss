@@ -18,3 +18,39 @@
 .table-borderless {
   margin: 24px;
 }
+
+.review-quote {
+  font-size: 60px;
+  font-family: serif;
+  line-height: 60px;
+  color: #999;
+}
+
+
+.review-item {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.review-item-content {
+  flex: 1;
+  padding: 0 20px;
+  line-height: 1.8;
+}
+
+.review-quote-start {
+  align-self: flex-start;
+}
+
+.review-quote-end {
+  align-self: flex-end;
+  line-height: 2px;
+}
+.review-item-date {
+  margin: 0;
+  color: #999;
+  text-align: right;
+}

@@ -91,7 +91,12 @@
         </div>
       </div>
       <div class="layout-tour-content">
-    <h1 class="layout-tour-title"><%= yield(:title) %></h1>
+        <div class="layout-tour-title-bar">
+          <h1 class="layout-tour-title"><%= yield(:title) %></h1>
+          <div>
+          <a href="#" class="layout-tour-title-next"><span class="fa fa-angle-left"></span></a><a href="#" class="layout-tour-title-next"><span class="fa fa-angle-right"></span></a>
+          </div>
+        </div>
 
         <div class="layout-tour-content-inner">
               <%= yield %>

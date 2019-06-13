@@ -5,4 +5,8 @@
   width: 320px;
   height: 240px;
   padding: 0;
+
+  &:hover {
+    background: rgba(255,255,255,0.5);
+  }
 }

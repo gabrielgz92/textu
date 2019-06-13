@@ -11,11 +11,16 @@
   width: 320px;
   background-color: white;
   padding: 0px;
-  height: 240px;
   border-radius: 2px;
-  box-shadow: 1px 1px $light-gray;
   margin-top: 0px;
   z-index: 1000;
+  box-shadow: 0 0 15px #ddd;
+  transform: scale(1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .project-card-img img{
@@ -27,10 +32,16 @@
 }
 
 .project-card-content{
-  padding: 8px;
+  padding: 20px;
+
   p{
     font-weight: lighter;
+    margin-bottom: 0;
   }
+}
+
+.project-card-info {
+  align-items: center;
 }
 
 .project-card h3 {
@@ -42,8 +53,7 @@
 }
 
 .project-card-function{
-  margin-right: 8px;
-  margin-top: 24px;
+  padding: 20px;
   font-weight: lighter;
   font-size: 16px;
   color: $project-card-gray;
@@ -55,7 +65,7 @@
 
 .add-project-card{
   width: 320px;
-  height: 240px;
+  height: 100%;
   display: flex;
   border: 0.3px dashed $textu-dark-blue;
   justify-content: center;
@@ -65,6 +75,13 @@
   font-weight: lighter;
   margin-top: 0px;
   color: $textu-dark-blue;
+
+  transform: scale(1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 a {
@@ -85,27 +102,32 @@ a:hover{
 }
 
 .welcome-entry {
-  height: 159px;
   background: white;
   margin-left: 16px;
   margin-top: 56px;
   width: 516px;
   padding: 28px;
   border-radius: 16px;
-  position: fixed;
-}
-
-.welcome-entry .fa-caret-up {
-  font-size: 50px;
   position: relative;
-  bottom: 60px;
-  color: white;
+  font-size: 20px;
+  box-shadow: 0 0 15px #ddd;
+
+  &:before {
+    content: "\f0d8";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: -80px;
+    left: 48px;
+    font-size: 100px;
+    color: white;
+  }
 }
 
 .close-welcome {
-  position: relative;
-  bottom: 68px;
-  left: 296px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .close-welcome:hover{
