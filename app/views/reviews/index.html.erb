@@ -10,7 +10,7 @@
     %>
     <% end %>
     <ul class="list-group list-group-flush entities-list-item">
-      <% @project.entities.uniq { |entity| entity.name }.each do |entity| %>
+      <% @project.entities.uniq { |entity| entity.name }.sort_by{|entity| entity.occurrences}.reverse!.each do |entity| %>
         <%= link_to project_reviews_path(@project, :keyword => entity.name) do %>
           <li class="list-group-item flex-entity justify-content-between align-items-center js-entity-item" data-entity="<%= entity.name %>">
             <%= entity.name %>
