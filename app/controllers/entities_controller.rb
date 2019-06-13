@@ -24,9 +24,9 @@ class EntitiesController < ApplicationController
   def entities_data
     # Loading the data for the scatter plot chart
     sentence_entities = SentenceEntity.joins(:entity, :sentence).includes(entity: :sentences)
-    filtered_entities = sentence_entities.reject{ |sentence_entity| sentence_entity.entity.sentences.size < 7 }
+    # filtered_entities = sentence_entities.reject{ |sentence_entity| sentence_entity.entity.sentences.size < 7 }
 
-    filtered_with_duplicates = filtered_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
+    filtered_with_duplicates = sentence_entities.map { |sentence_entity| { label: sentence_entity.entity.name, data: [{x: sentence_entity.entity.sentences.size, y: sentence_entity.entity.avg_sentiment}] } }
     filtered_without_duplicates = filtered_with_duplicates.uniq { |data| data[:label] }
     @datasets = filtered_without_duplicates
     # load data for highest average sentiment score

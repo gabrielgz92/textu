@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
     @reviews.each do |r|
       r.comments.split(".").each do |sentence|
         s = Sentence.create(review_id: r.id,
-                            content: sentence.downcase)
+                            content: sentence.downcase.gsub('\'s', ''))
         s.update(sentiment_symbol: (analyzer.sentiment s.content),
                  sentiment_score: (analyzer.score s.content).round(2))
       end
@@ -85,6 +85,7 @@ class ProjectsController < ApplicationController
             SentenceEntity.create(sentence_id: sentence.id,
                                   entity_id: entity.id)
           else
+            word = word.gsub('\'s', '').gsub('\'', '')
             new_entity = Entity.create(name: word)
             SentenceEntity.create(sentence_id: sentence.id,
                                   entity_id: new_entity.id)

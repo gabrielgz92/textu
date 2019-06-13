@@ -100,6 +100,7 @@ end
         SentenceEntity.create(sentence_id: sentence.id,
                               entity_id: entity.id)
       else
+        word = word.gsub('\'s', '')
         new_entity = Entity.create(name: word)
         SentenceEntity.create(sentence_id: sentence.id,
                               entity_id: new_entity.id)
