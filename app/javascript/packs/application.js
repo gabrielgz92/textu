@@ -6,4 +6,4 @@ const Sticky = require("sticky-js");
 // Sticky selector for the word list
 const sticky = new Sticky('.js-sticky');
 import "./components/entity_list_search";
-
+import "./components/text_bubble_close";

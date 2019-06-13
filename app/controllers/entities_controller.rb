@@ -59,6 +59,7 @@ class EntitiesController < ApplicationController
     project_entities = project_entities_object.entities.group(:name).order('count_id desc').count('id').reject!{ |k, v| v == 1 }
     @entities = project_entities
     # returns a hash of entity list in descending order
+
   end
 
   def entities_params
@@ -70,33 +71,32 @@ class EntitiesController < ApplicationController
   end
 
   def first_word_score
-    if @entity
-      first_word = @entity.reviews.map { |x| [x.date, x.id] }.sort.first
-      sentences = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
-      Entity.average_sentence_score(sentences, @entity)
-    end
+    return false if @entity.nil?
+
+    first_word = @entity.reviews.map{|x| [x.date, x.id] }.min
+    test_re = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
+    test_re[0].sentiment_score
   end
 
   def last_word_score
-    if @entity
+    return false if @entity.nil?
+
       last_word = @entity.reviews.map { |x| [x.date, x.id] }.sort.last
       sentences = @project.reviews.find(last_word[1]).sentences
       Entity.average_sentence_score(sentences, @entity)
-    end
   end
 
   def first_month
-    if @entity
-      date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.first[0].to_i
-      Date::MONTHNAMES[date]
-    end
+    return false if @entity.nil?
+
+    date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.first[0].to_i
+    Date::MONTHNAMES[date]
   end
 
   def last_month
-    if @entity
-      date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.sort.reverse.first[0].to_i
-      Date::MONTHNAMES[date]
-    end
+    return false if @entity.nil?
+
+    date = @entity.reviews.group_by_month(:date, format: "%m %Y").count.sort.reverse.first[0].to_i
+    Date::MONTHNAMES[date]
   end
 end
-

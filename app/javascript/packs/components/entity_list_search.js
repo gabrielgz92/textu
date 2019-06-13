@@ -15,6 +15,3 @@ if (entityListEl){
     });
   });
 }
-
-
-// lowercase all input
