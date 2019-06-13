@@ -37,7 +37,7 @@
     <tbody>
       <% @reviews.each do |review| %>
       <tr>
-        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br> <br>  <%= review.date %> </td>
+        <td> <i class="fas fa-quote-left"></i> <%= review.comments %> <i class="fas fa-quote-right"></i> <br><span style="color:gray">- <%= review.date %></span></td>
       </tr>
       <% end %>
     </tbody>

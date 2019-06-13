@@ -33,6 +33,9 @@
             },
             scales: {
                 xAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                  },
                   scaleLabel: {
                       display: true,
                       labelString: 'Number of Occurences'
@@ -41,7 +44,11 @@
                     position: 'bottom'
                 }],
                 yAxes: [{
-                scaleLabel: {
+                  ticks: {
+                    min: -2,
+                    max: 3
+                  },
+                  scaleLabel: {
                     display: true,
                     labelString: 'Average Sentiment Score'
                   },
@@ -49,6 +56,7 @@
             }
         }
     });
+
   }
   if (document.readyState === 'complete') {
       initialize_chart();
