@@ -1,21 +1,21 @@
 <% content_for :title, "Common words" %>
 
 <div class="layout-tour-intro">
-  <p>Let's do an overview! </p>
-  <p> The entities mentioned in reviews with the highest average sentiment score are
+  <p>Let's take a closer look. The keywords mentioned with the highest average score were
     <span class="number-highlight number-highlight-positive">
     <%= @firstHighest.name %>
     </span> and <span class="number-highlight number-highlight-positive">
     <%= @secondHighest.name %>
-    </span>.
-    <br>
-    <br>
-      While those with the lowest average sentiment were
+    </span>,
+      while those with the lowest were
     <span class="number-highlight number-highlight-negative">
     <%= @firstLowest.name %>
     </span> and <span class="number-highlight number-highlight-negative">
     <%= @secondLowest.name %>
     </span>.
   </p>
-  <%= render 'graphs/sentiment_score_average' %>
 </div>
+  <div class="entity-chart-graph">
+  <%= render 'graphs/sentiment_score_average' %>
+  </div>
+

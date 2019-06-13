@@ -55,12 +55,10 @@ class EntitiesController < ApplicationController
   end
 
   def set_entities
-    if params[:query].present?
-      @entities = Project.find(params[:project_id]).entities.search_by_entity_name(params[:query]).reorder(nil).group(:name).order('count_id desc').count('id').reject { |k, v| v == 1 }
-    else
-      @entities = Project.find(params[:project_id]).entities.group(:name).order('count_id desc').count('id').reject { |k, v| v == 1 }
-    end
-    # returns a hash of entity list in descending order
+    project_entities_object = Project.includes(entities: [:sentence_entities, :sentences])
+    project_entities = project_entities_object.map { |x| x.entities }.first
+
+    @entities = project_entities
   end
 
   def entities_params
