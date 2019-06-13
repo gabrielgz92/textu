@@ -3,20 +3,23 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
-  width: 288px;
+  width: auto;
   font-size: 16px;
   color: white;
   background-color: $textu-yeti-blue;
   padding-right: 12px;
   padding-left: 0px;
-  width: 264px;
   height: 40px;
   padding-top: 8px;
 
   ul {
     list-style: none;
-    width: 264px;
+    width:  15em;;
     color: white;
     border-radius: 4px;
+  }
+
+  li {
+    width:auto;
   }
 }
