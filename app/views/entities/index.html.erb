@@ -1,11 +1,10 @@
+
 <% content_for :title, "Keyword insights" %>
 <% javascript_include_tag "https://code.jquery.com/jquery-3.4.1.min.js" %>
+<div class="review-index">
+  <%= render 'entities_list' %>
 
-<div class="sentiment-over-time-speech">
-  <div class="entities-list-wrapper">
-    <%= render 'entities_list' %>
-  </div>
-
+<div class="keyword-insight-container">
   <div class="entity-over-time-text">
     <% if @entity %>
       <div class="layout-tour-intro">
@@ -35,8 +34,8 @@
           <% end %>
           in <span id="last-month"> <%= @last_month %> </span>.
         <span class="entity-name-js">"<%= @entity.name.upcase %>"</span> was mentioned <span id="entity-occurrences"><%= @entity.occurrences %> </span> times in this period! </p>
-      </div>
     <% end %>
+    </div>
 
 
     <div class="entity-chart">
@@ -48,34 +47,27 @@
     </div>
   </div>
 </div>
+</div>
 
 
 <script>
   chart = Chartkick.charts["chart-1"].chart
   document.getElementById("entities-list-data").addEventListener("click", function(event) {
-
     event.preventDefault();
-
     var entityName = event.target.getAttribute('data-entity');
-
     $.ajax({
       dataType: "json",
       url: `/projects/<%= @project.id %>/entities?entity=` + entityName,
       success: function(newData) {
-
         // clean out the chart data
         chart.data.datasets[0].data = []
-
         // clean out the chart labels
         chart.data.labels = []
-
         $.each(newData, function(key, value) {
           chart.data.datasets[0].data.push(value);
           chart.data.labels.push(key);
         });
-
         chart.update();
-
         // Setting first score
         let classNameFirst = 'number-highlight';
         if (chart.data.datasets[0].data[0] > 0) {
@@ -83,24 +75,18 @@
         } else {
           classNameFirst += ' number-highlight-negative';
         };
-
         document.getElementById("first-score").innerHTML = `<span class="${classNameFirst}">${chart.data.datasets[0].data[0].toFixed(2)}</span>`;
-
         // Setting last score
         let lastScore = chart.data.datasets[0].data[chart.data.datasets[0].data.length - 1];
-
         let classNameLast = 'number-highlight';
         if (lastScore > 0) {
           classNameLast += ' number-highlight-positive';
         } else {
           classNameLast += ' number-highlight-negative';
         };
-
         document.getElementById("last-score").innerHTML = `<span class="${classNameLast}">${lastScore.toFixed(2)}</span>`;
-
         //Setting badge of occurrences
         document.getElementById("entity-occurrences").innerText = event.target.querySelector('.js-badge').innerText;
-
         //Setting months array
         const month = new Array();
         month[0] = "January";
@@ -115,18 +101,14 @@
         month[9] = "October";
         month[10] = "November";
         month[11] = "December";
-
         //Setting first month
         let firstMonthDate = new Date(chart.data.labels[0]);
         let firstMonth = month[firstMonthDate.getMonth()];
         document.getElementById("first-month").innerText = `${firstMonth}`;
-
         //Setting last month
-
         let lastMonthDate = new Date(chart.data.labels[chart.data.labels.length - 1]);
         let lastMonth = month[lastMonthDate.getMonth()];
         document.getElementById("last-month").innerText = `${lastMonth}`;
-
         // Setting entity name
         document.querySelectorAll(".entity-name-js").forEach((e) => {
           e.innerHTML = `"${entityName.toUpperCase()}"`;
