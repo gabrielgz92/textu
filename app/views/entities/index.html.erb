@@ -1,26 +1,34 @@
 <% content_for :title, "Keyword insights" %>
-
+<% javascript_include_tag "https://code.jquery.com/jquery-3.4.1.min.js" %>
 
 <% if @entity %>
   <div class="layout-tour-intro">
-    <p>Over time, the score for the keyword "<%= params[:entity] %>" has changed from
+    <p>Over time, the score for the keyword <span class="entity-name-js">"<%= @entity.name.upcase %>"</span> has changed from
       <% if @first_word_score > 0 %>
-        <span class="number-highlight number-highlight-positive">
-          <%= @first_word_score %></span>
+        <span id="first-score">
+          <span class="number-highlight number-highlight-positive">
+            <%= @first_word_score %></span>
+        </span>
       <% else %>
-        <span class="number-highlight number-highlight-negative">
-          <%= @first_word_score %></span>
+        <span id="first-score">
+          <span class="number-highlight number-highlight-negative">
+            <%= @first_word_score %></span>
+        </span>
       <% end %>
-      in <%= @first_month %> to
+      in <span id="first-month"> <%= @first_month %> </span> to
        <% if @last_word_score > 0 %>
-        <span class="number-highlight number-highlight-positive">
-          <%= @last_word_score %></span>
+       <span id="last-score">
+          <span class="number-highlight number-highlight-positive">
+            <%= @last_word_score %></span>
+        </span>
       <% else %>
-        <span class="number-highlight number-highlight-negative">
-          <%= @last_word_score %></span>
+        <span id="last-score">
+          <span class="number-highlight number-highlight-negative">
+            <%= @last_word_score %></span>
+        </span>
       <% end %>
-      in <%= @last_month %>.
-    "<%= @entity.name.capitalize %>" was mentioned <%= @entity.occurrences %> times in this period! </p>
+      in <span id="last-month"> <%= @last_month %> </span>.
+    <span class="entity-name-js">"<%= @entity.name.upcase %>"</span> was mentioned <span id="entity-occurrences"><%= @entity.occurrences %> </span> times in this period! </p>
   </div>
 <% end %>
 
@@ -32,3 +40,97 @@
     </div>
   </div>
 </div>
+
+<script>
+
+chart = Chartkick.charts["chart-1"].chart
+
+document.getElementById("entities-list-data").addEventListener("click", function(event) {
+
+  event.preventDefault();
+
+  var entityName = event.target.getAttribute('data-entity');
+
+  $.ajax({
+    dataType: "json",
+    url: '/projects/157/entities?entity=' + entityName,
+    success: function(newData) {
+
+      // clean out the chart data
+      chart.data.datasets[0].data = []
+
+      // clean out the chart labels
+      chart.data.labels = []
+
+      $.each(newData, function(key, value) {
+        chart.data.datasets[0].data.push(value);
+        chart.data.labels.push(key);
+      });
+
+      chart.update();
+
+      // Setting first score
+      let classNameFirst = 'number-highlight';
+      if (chart.data.datasets[0].data[0] > 0) {
+        classNameFirst += ' number-highlight-positive';
+      } else {
+        classNameFirst += ' number-highlight-negative';
+      };
+
+      document.getElementById("first-score").innerHTML = `<span class="${classNameFirst}">${chart.data.datasets[0].data[0].toFixed(2)}</span>`;
+
+      // Setting last score
+      let lastScore = chart.data.datasets[0].data[chart.data.datasets[0].data.length - 1];
+
+      let classNameLast = 'number-highlight';
+      if (lastScore > 0) {
+        classNameLast += ' number-highlight-positive';
+      } else {
+        classNameLast += ' number-highlight-negative';
+      };
+
+      document.getElementById("last-score").innerHTML = `<span class="${classNameLast}">${lastScore.toFixed(2)}</span>`;
+
+      //Setting badge of occurrences
+      document.getElementById("entity-occurrences").innerText = event.target.querySelector('.js-badge').innerText;
+
+      //Setting months array
+      const month = new Array();
+      month[0] = "January";
+      month[1] = "February";
+      month[2] = "March";
+      month[3] = "April";
+      month[4] = "May";
+      month[5] = "June";
+      month[6] = "July";
+      month[7] = "August";
+      month[8] = "September";
+      month[9] = "October";
+      month[10] = "November";
+      month[11] = "December";
+
+      //Setting first month
+      let firstMonthDate = new Date(chart.data.labels[0]);
+      let firstMonth = month[firstMonthDate.getMonth()];
+      document.getElementById("first-month").innerText = `${firstMonth}`;
+
+      //Setting last month
+
+      let lastMonthDate = new Date(chart.data.labels[chart.data.labels.length - 1]);
+      let lastMonth = month[lastMonthDate.getMonth()];
+      document.getElementById("last-month").innerText = `${lastMonth}`;
+
+      // Setting entity name
+      document.querySelectorAll(".entity-name-js").forEach((e) => {
+        e.innerHTML = `"${entityName.toUpperCase()}"`;
+      });
+    },
+    error: function(error) {
+      alert(error);
+    }
+  });
+
+});
+
+
+</script>

@@ -8,7 +8,11 @@ class EntitiesController < ApplicationController
     @last_word_score = last_word_score
     @first_month = first_month
     @last_month = last_month
-    render layout: 'tour'
+
+    respond_to do |format|
+      format.html { render layout: 'tour' }
+      format.json { render json: @entity.sentiment_over_time.sort.to_h }
+    end
   end
 
   def reviews_for_entity
@@ -67,16 +71,17 @@ class EntitiesController < ApplicationController
 
   def first_word_score
     if @entity
-      first_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.first
-      test_re = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
-      test_re[0].sentiment_score
+      first_word = @entity.reviews.map { |x| [x.date, x.id] }.sort.first
+      sentences = @project.reviews.find(first_word[1]).sentences.select { |sentence| sentence.content.include? @entity.name }
+      Entity.average_sentence_score(sentences, @entity)
     end
   end
 
   def last_word_score
     if @entity
-      last_word = @entity.reviews.map{|x| [x.date, x.id] }.sort.second
-      Review.find(last_word[1]).sentences.first.sentiment_score
+      last_word = @entity.reviews.map { |x| [x.date, x.id] }.sort.last
+      sentences = @project.reviews.find(last_word[1]).sentences
+      Entity.average_sentence_score(sentences, @entity)
     end
   end
 
