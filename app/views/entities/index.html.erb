@@ -53,7 +53,7 @@ document.getElementById("entities-list-data").addEventListener("click", function
 
   $.ajax({
     dataType: "json",
-    url: '/projects/157/entities?entity=' + entityName,
+    url: `/projects/<%= @project.id %>/entities?entity=` + entityName,
     success: function(newData) {
 
       // clean out the chart data
