@@ -4,7 +4,7 @@
 
   <h4> I hope you enjoyed your data tour!</h4>
   <br>
-  <p> From the <strong><%= Review.current_project_reviews(params[:project_id]) %> reviews</strong> submitted, most of them are
+  <p> From the <strong><%= Review.current_project_reviews(params[:project_id]) %> tweets</strong> submitted, most of them are
     <%result = Review.total_reviews_avg_sentiment(params[:project_id]) %>
     <% if result > 0 %>
     <span class="number-highlight-bigger number-highlight-bigger-positive"><%= "positive" %></span>
@@ -20,7 +20,7 @@
           <%= result %>.</span>
       <% end %>.</p>
   <br>
-  <p>Here's the words with the most positive and negative sentiment scores:</p>
+  <p>Here are the words with the most positive and negative sentiment scores:</p>
   <br>
   <div class="recommendations-cards">
     <div class="card-category-reccomendations">

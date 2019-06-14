@@ -63,12 +63,12 @@
                                    projects_path}"  %>
             </li>
             <li>
-            <%= link_to "Reviews", project_reviews_path(params[:project_id]),
+            <%= link_to "Tweets", project_reviews_path(params[:project_id]),
                                    class: "#{current? "layout-tour-menu-item-active",
                                    project_reviews_path(params[:project_id])}"  %>
             </li>
             <li>
-            <%= link_to "Reviews traffic", project_reviews_by_month_graph_path(params[:project_id]),
+            <%= link_to "Traffic", project_reviews_by_month_graph_path(params[:project_id]),
                                           class: "#{current? "layout-tour-menu-item-active",
                                           project_reviews_by_month_graph_path(params[:project_id])}"  %>
             </li>
