@@ -41,7 +41,7 @@ puts "Seeded #{Project.count} project(s)."
 
 # ---------------------------------------
 # Parse CSV and Creating REVIEW instances
-csv_text = File.read(Rails.root.join('db', 'seeds', '50_reviews.csv'))
+csv_text = File.read(Rails.root.join('db', 'seeds', 'Donald Trump Twitter Seeds - 50_reviews (4).csv'))
 csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1', :row_sep => :auto, :col_sep => ",")
 csv.each do |row|
   r = Review.new
